@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/labelTicket"
+        app:showAsAction="ifRoom|withText|collapseActionView"
+        android:icon="@drawable/fa_ticket"
+        android:visible="true"
+        android:enabled="true"
+        android:checkable="false"
+        android:id="@+id/voirTickets" />
+</menu>

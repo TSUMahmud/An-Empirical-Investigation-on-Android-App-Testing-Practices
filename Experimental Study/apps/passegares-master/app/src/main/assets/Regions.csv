@@ -1,0 +1,16 @@
+id;nom;dossierId;vCreation;vMaj
+1;Île-de-France;Paris;13;141
+2;Occitanie;Occitanie;102;132
+3;Hauts-de-France;HautsFrance;13;130
+4;Normandie;Normandie;13;130
+5;Pays de la Loire;PaysLoire;102;138
+6;Provence-Alpes-Côte d'Azur;PACA;102;130
+7;Bourgogne-Franche-Comté;BourgogneFC;13;136
+8;Nouvelle-Aquitaine;NAquitaine;102;130
+9;Grand Est;GrandEst;102;136
+10;Centre-Val de Loire;CentreVdL;13;137
+11;Auvergne-Rhône-Alpes;AuvergneRA;102;144
+12;Bretagne;Bretagne;102;137
+13;London;London;133;0
+14;Monaco;Monaco;134;0
+15;Suisse;Suisse;142;0

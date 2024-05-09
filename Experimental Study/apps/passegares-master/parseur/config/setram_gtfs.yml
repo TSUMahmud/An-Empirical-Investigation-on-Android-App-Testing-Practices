@@ -1,0 +1,11 @@
+link_download: https://www.data.gouv.fr/fr/datasets/r/00d5f7d7-aca8-4356-8164-d4a2bb635ea6
+prefixIdExterne: SETRAM
+default_value:
+    exploitant: SETRAM
+    dossierId: PaysLoire
+lignes: True
+ignore_values:
+substitue:
+    idExterne:
+        SETRAMPLA_GAREN: SNCF01917
+typeFile: gtfs

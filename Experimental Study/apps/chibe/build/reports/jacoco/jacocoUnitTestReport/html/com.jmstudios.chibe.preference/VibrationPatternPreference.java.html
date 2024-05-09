@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VibrationPatternPreference.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe.preference</a> &gt; <span class="el_source">VibrationPatternPreference.java</span></div><h1>VibrationPatternPreference.java</h1><pre class="source lang-java linenums">// VibrationPatternPreference.java --- A subclass of ListPreference that
+// allows the user to set a custom vibrate pattern or one of the
+// preselected vibrate patterns.
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+package com.jmstudios.chibe.preference;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.preference.ListPreference;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.jmstudios.chibe.state.SettingsModel;
+
+import com.jmstudios.chibe.R;
+
+public class VibrationPatternPreference extends ListPreference {
+    protected Context mContext;
+    private String mCustomPattern;
+    private EditText customPatternText;
+    private AlertDialog mAlertDialog;
+
+    public VibrationPatternPreference(Context context, AttributeSet attrs) {
+<span class="nc" id="L44">        super(context, attrs);</span>
+<span class="nc" id="L45">        mContext = context;</span>
+<span class="nc" id="L46">    }</span>
+
+    @Override
+    protected void onSetInitialValue(boolean restoredPersistedValue,
+                                     Object defaultValue) {
+<span class="nc" id="L51">        super.onSetInitialValue(restoredPersistedValue, defaultValue);</span>
+<span class="nc" id="L52">        updateSummary();</span>
+<span class="nc" id="L53">    }</span>
+
+    @Override
+    protected void onDialogClosed(boolean positiveResult) {
+<span class="nc" id="L57">        super.onDialogClosed(positiveResult);</span>
+
+<span class="nc bnc" id="L59" title="All 4 branches missed.">        if (positiveResult &amp;&amp; getValue().equals(&quot;custom&quot;)) {</span>
+<span class="nc" id="L60">            mCustomPattern = getCustomVibrationPattern();</span>
+
+<span class="nc" id="L62">            LayoutInflater inflater = LayoutInflater.from(mContext);</span>
+<span class="nc" id="L63">            View customPatternView =</span>
+<span class="nc" id="L64">                inflater.inflate(R.layout.custom_pattern_view, null);</span>
+
+<span class="nc" id="L66">            customPatternText = (EditText)</span>
+<span class="nc" id="L67">                customPatternView.findViewById(R.id.custom_pattern_text);</span>
+<span class="nc" id="L68">            customPatternText.setCursorVisible(true);</span>
+<span class="nc" id="L69">            customPatternText.setLongClickable(false);</span>
+<span class="nc" id="L70">            customPatternText.setClickable(false);</span>
+<span class="nc" id="L71">            customPatternText.setSelected(false);</span>
+<span class="nc" id="L72">            customPatternText.setKeyListener(null);</span>
+<span class="nc" id="L73">            updateCustomPatternText();</span>
+
+<span class="nc" id="L75">            ((Button) customPatternView.findViewById(R.id.button_short_vibration))</span>
+<span class="nc" id="L76">                .setOnClickListener(new View.OnClickListener() {</span>
+                        @Override
+                        public void onClick(View v) {
+<span class="nc" id="L79">                            mCustomPattern += &quot;.&quot;;</span>
+<span class="nc" id="L80">                            updateCustomPatternText();</span>
+<span class="nc" id="L81">                            mAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE)</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">                                .setEnabled(!mCustomPattern.isEmpty());</span>
+<span class="nc" id="L83">                        }</span>
+                    });
+<span class="nc" id="L85">            ((Button) customPatternView.findViewById(R.id.button_long_vibration))</span>
+<span class="nc" id="L86">                .setOnClickListener(new View.OnClickListener() {</span>
+                        @Override
+                        public void onClick(View v) {
+<span class="nc" id="L89">                            mCustomPattern += &quot;_&quot;;</span>
+<span class="nc" id="L90">                            updateCustomPatternText();</span>
+<span class="nc" id="L91">                            mAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE)</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">                                .setEnabled(!mCustomPattern.isEmpty());</span>
+<span class="nc" id="L93">                        }</span>
+                    });
+<span class="nc" id="L95">            ((Button) customPatternView.findViewById(R.id.button_delete_vibration))</span>
+<span class="nc" id="L96">                .setOnClickListener(new View.OnClickListener() {</span>
+                        @Override
+                        public void onClick(View v) {
+<span class="nc bnc" id="L99" title="All 2 branches missed.">                            if (!mCustomPattern.isEmpty())</span>
+<span class="nc" id="L100">                                mCustomPattern =</span>
+<span class="nc" id="L101">                                    mCustomPattern.substring</span>
+<span class="nc" id="L102">                                    (0, mCustomPattern.length() - 1);</span>
+<span class="nc" id="L103">                            mAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE)</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">                                .setEnabled(!mCustomPattern.isEmpty());</span>
+<span class="nc" id="L105">                            updateCustomPatternText();</span>
+<span class="nc" id="L106">                        }</span>
+                    });
+
+<span class="nc" id="L109">            AlertDialog.Builder builder =</span>
+                new AlertDialog.Builder(mContext);
+
+<span class="nc" id="L112">            builder.setCancelable(true);</span>
+<span class="nc" id="L113">            builder.setNegativeButton(R.string.cancel_dialog, null);</span>
+<span class="nc" id="L114">            builder.setOnCancelListener</span>
+<span class="nc" id="L115">                (new DialogInterface.OnCancelListener() {</span>
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+<span class="nc" id="L118">                            if (getCustomVibrationPattern()</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                                .isEmpty())</span>
+<span class="nc" id="L120">                                resetValue();</span>
+<span class="nc" id="L121">                        }</span>
+                    });
+
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (android.os.Build.VERSION.SDK_INT &gt;= 17) {</span>
+<span class="nc" id="L125">                builder.setOnDismissListener</span>
+<span class="nc" id="L126">                    (new DialogInterface.OnDismissListener() {</span>
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+<span class="nc" id="L129">                                if (getCustomVibrationPattern()</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                                    .isEmpty())</span>
+<span class="nc" id="L131">                                    resetValue();</span>
+<span class="nc" id="L132">                                updateSummary();</span>
+<span class="nc" id="L133">                            }</span>
+                        });
+            }
+
+<span class="nc" id="L137">            builder.setPositiveButton</span>
+<span class="nc" id="L138">                (R.string.ok_dialog,</span>
+<span class="nc" id="L139">                 new DialogInterface.OnClickListener() {</span>
+                     @Override
+                     public void onClick(DialogInterface dialog, int which) {
+<span class="nc bnc" id="L142" title="All 2 branches missed.">                         if (mCustomPattern.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L143">                             resetValue();</span>
+<span class="nc" id="L144">                             return;</span>
+                         } else {
+<span class="nc" id="L146">                             setCustomVibrationPattern(mCustomPattern);</span>
+<span class="nc" id="L147">                             updateSummary();</span>
+                         }
+<span class="nc" id="L149">                     }</span>
+                 });
+
+
+<span class="nc" id="L153">            builder.setView(customPatternView);</span>
+
+<span class="nc" id="L155">            builder.setTitle(R.string.custom_pattern_dialog);</span>
+
+<span class="nc" id="L157">            mAlertDialog = builder.create();</span>
+<span class="nc" id="L158">            mAlertDialog.show();</span>
+
+<span class="nc" id="L160">            mAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE)</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">                .setEnabled(!mCustomPattern.isEmpty());</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        } else if (positiveResult) {</span>
+            // The custom vibration pattern is emptied when the user
+            // selects a standard vibration pattern
+<span class="nc" id="L165">            setCustomVibrationPattern(&quot;&quot;);</span>
+        }
+
+<span class="nc" id="L168">        updateSummary();</span>
+<span class="nc" id="L169">    }</span>
+
+    // We override these methods in the subclass to create a
+    // preference for another vibration pattern.
+    protected void setCustomVibrationPattern(String pattern) {
+<span class="nc" id="L174">        SettingsModel settingsModel = new SettingsModel(mContext);</span>
+<span class="nc" id="L175">        settingsModel.setCustomVibrationPattern(pattern);</span>
+<span class="nc" id="L176">    }</span>
+
+    protected String getCustomVibrationPattern() {
+<span class="nc" id="L179">        SettingsModel settingsModel = new SettingsModel(mContext);</span>
+<span class="nc" id="L180">        return settingsModel.getCustomVibrationPattern();</span>
+    }
+
+    protected String getVibrationPattern() {
+<span class="nc" id="L184">        SettingsModel settingsModel = new SettingsModel(mContext);</span>
+<span class="nc" id="L185">        return settingsModel.getVibrationPattern();</span>
+    }
+
+    private void resetValue() {
+<span class="nc" id="L189">        setValue(&quot;.._..&quot;);</span>
+<span class="nc" id="L190">        updateSummary();</span>
+<span class="nc" id="L191">    }</span>
+
+    private void updateSummary() {
+<span class="nc" id="L194">        SettingsModel settingsModel = new SettingsModel(mContext);</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        if (getValue().equals(&quot;custom&quot;))</span>
+<span class="nc" id="L196">            setSummary(getEntry() + &quot;: &quot; +</span>
+<span class="nc" id="L197">                       getFormattedPattern(getVibrationPattern()));</span>
+        else
+<span class="nc" id="L199">            setSummary(getEntry());</span>
+<span class="nc" id="L200">    }</span>
+
+    private String getFormattedPattern(String pattern) {
+<span class="nc" id="L203">        String formattedPattern = &quot;&quot;;</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        for (int i = 0; i &lt; pattern.length(); i++) {</span>
+<span class="nc" id="L205">            formattedPattern += pattern.charAt(i);</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            if (pattern.charAt(i) == '_' ||</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">                (i &lt; pattern.length() - 1 &amp;&amp;</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">                 pattern.charAt(i+1) == '_'))</span>
+<span class="nc" id="L209">                formattedPattern += &quot; &quot;;</span>
+        }
+<span class="nc" id="L211">        return formattedPattern;</span>
+    }
+
+    private void updateCustomPatternText() {
+<span class="nc" id="L215">        customPatternText.setText</span>
+<span class="nc" id="L216">            (getFormattedPattern(mCustomPattern));</span>
+<span class="nc" id="L217">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

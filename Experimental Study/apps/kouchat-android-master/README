@@ -1,0 +1,25 @@
+
+- KouChat Android v1.5.0 README
+
+KouChat is an open source, serverless, LAN chat application.
+It's written in Java, and is free software.
+
+Requirements: Android v4.1 or newer.
+
+Enjoy :)
+
+
+
+Copyright 2006-2019 Christian Ihle
+https://www.kouchat.net/
+https://www.facebook.com/kouchatapp
+
+Source and graphics available under the GNU LGPL v3.
+See COPYING for details.
+
+The smileys in icons/smileys are taken from a GNOME icon theme.
+See the README in that folder for details.
+
+notification_sound.ogg is error.wav created by Nuno Povoa in encoded format
+and is part of the KDE Oxygen theme, available under the GNU Lesser General Public License
+(https://www.gnu.org/licenses/lgpl.html).

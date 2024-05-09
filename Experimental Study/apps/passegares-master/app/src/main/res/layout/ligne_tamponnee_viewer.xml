@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="8dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="46dp"
+        android:id="@+id/iconeLigne"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:cropToPadding="false"
+        android:adjustViewBounds="false"
+        android:layout_rowSpan="2"
+        android:contentDescription="Icon"
+        tools:ignore="HardcodedText"
+        android:minWidth="46dp"
+        android:scaleType="fitStart"
+        android:paddingTop="12dp"
+        android:layout_height="64dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nomLigne"
+        android:textSize="24sp"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:textColor="@android:color/black"
+        tools:ignore="HardcodedText"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="fill"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nbTampons"
+        android:textSize="18sp"
+        android:layout_row="0"
+        android:layout_column="2"
+        tools:ignore="HardcodedText"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="bottom|fill"
+        android:textAlignment="viewEnd"
+        android:gravity="center_vertical|end" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_columnSpan="2"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="fill_horizontal" />
+
+</GridLayout>

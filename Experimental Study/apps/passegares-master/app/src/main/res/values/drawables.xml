@@ -1,0 +1,7 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item name="ic_mainmenu_radar" type="drawable">@drawable/fa_map_marker</item>
+    <item name="ic_mainmenu_preferences" type="drawable">@android:drawable/ic_menu_preferences</item>
+    <item name="ic_mainmenu_tampons" type="drawable">@drawable/fa_book</item>
+    <item name="ic_mainmenu_succes" type="drawable">@drawable/fa_cup</item>
+    <item name="ic_mainmenu_ticket" type="drawable">@drawable/fa_ticket</item>
+</resources>

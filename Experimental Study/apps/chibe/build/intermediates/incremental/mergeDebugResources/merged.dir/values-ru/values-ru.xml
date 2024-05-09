@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Перейти на главный экран"</string>
+    <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
+    <string msgid="6623331958280229229" name="abc_action_bar_home_subtitle_description_format">"%1$s, %2$s, %3$s"</string>
+    <string msgid="1594238315039666878" name="abc_action_bar_up_description">"Перейти вверх"</string>
+    <string msgid="3588849162933574182" name="abc_action_menu_overflow_description">"Другие параметры"</string>
+    <string msgid="4076576682505996667" name="abc_action_mode_done">"Готово"</string>
+    <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Показать все"</string>
+    <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Выбрать приложение"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"ОТКЛ."</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"ВКЛ."</string>
+    <string msgid="7723749260725869598" name="abc_search_hint">"Поиск"</string>
+    <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Удалить запрос"</string>
+    <string msgid="2550479030709304392" name="abc_searchview_description_query">"Поисковый запрос"</string>
+    <string msgid="8264924765203268293" name="abc_searchview_description_search">"Поиск"</string>
+    <string msgid="8928215447528550784" name="abc_searchview_description_submit">"Отправить запрос"</string>
+    <string msgid="893419373245838918" name="abc_searchview_description_voice">"Голосовой поиск"</string>
+    <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Открыть доступ"</string>
+    <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Открыть доступ пользователю %s"</string>
+    <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Свернуть"</string>
+    <string name="app_name">Chibe</string>
+    <string name="base_vibration_pattern_preference_title">Базовый шаблон вибрации</string>
+    <string name="cancel_dialog">Отмена</string>
+    <string name="chibe_intro_label">Введение</string>
+    <string name="chibe_pattern_entries_0">Шаблон: .. _ ..</string>
+    <string name="chibe_pattern_entries_1">Шаблон: _ .. _</string>
+    <string name="chibe_pattern_entries_2">Шаблон: _ _</string>
+    <string name="chibe_pattern_entries_3">Шаблон: _</string>
+    <string name="chibe_pattern_entries_4">Шаблон: ..</string>
+    <string name="chibe_pattern_entries_5">Шаблон: . _ ...</string>
+    <string name="chibe_pattern_entries_6">Шаблон: . _ . _ .</string>
+    <string name="chibe_pattern_entries_custom">Свой</string>
+    <string name="chibe_settings_label">Chibe</string>
+    <string name="contact_email_adress">mailto:marienraat@riseup.net</string>
+    <string name="custom_pattern_dialog">Свой шаблон</string>
+    <string name="custom_pattern_hint">Используйте кнопки, чтобы создать шаблон</string>
+    <string name="dark_theme_preference_title">Тёмная тема</string>
+    <string name="delete_vibration">⌫ DEL</string>
+    <string name="email_me_preference_summary">Отправьте свои предложения или дайте мне знать, что вы думаете</string>
+    <string name="email_me_preference_title">Написать мне на marienraat@riseup.net</string>
+    <string name="hour_repeat_preference_summary">Вибрировать часовым шаблоном столько раз, сколько сейчас часов. Например, в 14:00 Chibe будет вибрировать один раз базовым шаблоном и два раза часовым шаблоном.</string>
+    <string name="hour_repeat_preference_title">Вибрировать часы</string>
+    <string name="hour_vibration_pattern_preference_title">Часовой шаблон вибрации</string>
+    <string name="intro_slide_1_text">В прошлом, во многих домах были часы с боем или с кукушкой, которые отсчитывали каждый час. Но с современными технологиями никого отвлекать громкими звуками не нужно, Chibe может просто вибрировать вашим телефоном!</string>
+    <string name="intro_slide_1_title">Добро пожаловать в Chibe!</string>
+    <string name="intro_slide_2_text">Следите за временем без усилий с Chibe, что бы вы ни делали. Небольшая вибрация в определённые часы напомнит вам о времени. Это позволит вам использовать время более эффективно и распоряжаться им более сознательно.</string>
+    <string name="intro_slide_2_title">Следите за временем</string>
+    <string name="intro_slide_3_text">Chibe не будет беспокоить, когда вы спите. Просто настройте время сна и отдыхайте без помех!</string>
+    <string name="intro_slide_3_title">Спит, когда вы спите</string>
+    <string name="intro_slide_4_text">Chibe позволяет выбрать один из нескольких шаблонов вибрации. Выберите подходящий, чтобы не путать Chibe с обычными уведомлениями.</string>
+    <string name="intro_slide_4_title">Свои шаблоны вибрации</string>
+    <string name="intro_slide_5_text">Нажмите на выключатель в правом верхнем углу, чтобы включить Chibe и начать!</string>
+    <string name="intro_slide_5_title">Начинаем!</string>
+    <string name="long_vibration">Длинный</string>
+    <string name="ok_dialog">OK</string>
+    <string name="pref_category_other">Другое</string>
+    <string name="pref_category_timing">Время</string>
+    <string name="pref_category_vibration">Шаблоны вибрации</string>
+    <string name="project_page_preference_summary">Найти больше информации, оставить отзыв и внести свой вклад</string>
+    <string name="project_page_preference_title">Посетить страницу проекта</string>
+    <string name="project_page_url">https://github.com/raatmarien/chibe</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Поиск"</string>
+    <string name="set_dialog">Установить</string>
+    <string name="short_vibration">Короткий</string>
+    <string name="sleep_end_preference_title">Конец сна</string>
+    <string name="sleep_start_preference_title">Начало сна</string>
+    <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">">999"</string>
+    <string name="test_hour_vibration_preference_summary">Вибрирует устройством с использованием часового шаблона вибрации</string>
+    <string name="test_hour_vibration_preference_title">Проверить часовой шаблон вибрации</string>
+    <string name="test_normal_vibration_preference_summary">Вибрирует устройством с использованием базового шаблона вибрации</string>
+    <string name="test_normal_vibration_preference_title">Проверить базовый шаблон вибрации</string>
+    <string name="vibrate_during_calls_preference_summary">Разрешить Chibe вибрировать во время звонков</string>
+    <string name="vibrate_during_calls_preference_title">Вибрация во время звонков</string>
+    <string name="vibrate_during_dnd_preference_summary">Разрешить Chibe вибрировать, когда включён режим «Не беспокоить».</string>
+    <string name="vibrate_during_dnd_preference_title">Вибрация в режиме «Не беспокоить»</string>
+    <string name="vibration_interval_preference_title">Интервал вибрации</string>
+    <string name="vibration_time_entries_0">каждую минуту</string>
+    <string name="vibration_time_entries_1">каждые 5 минут</string>
+    <string name="vibration_time_entries_2">каждые 10 минут</string>
+    <string name="vibration_time_entries_3">каждые 15 минут</string>
+    <string name="vibration_time_entries_4">каждые 20 минут</string>
+    <string name="vibration_time_entries_5">каждые полчаса</string>
+    <string name="vibration_time_entries_6">каждый час</string>
+    <string name="vibration_time_entries_7">каждые два часа</string>
+</resources>

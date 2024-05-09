@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:icon="@drawable/sc_trending">
+        <intent android:targetPackage="io.github.hidroh.materialistic" android:action="android.intent.action.VIEW" android:targetClass="io.github.hidroh.materialistic.ListActivity" />
+    </shortcut>
+    <shortcut android:icon="@drawable/sc_new_releases">
+        <intent android:targetPackage="io.github.hidroh.materialistic" android:action="android.intent.action.VIEW" android:targetClass="io.github.hidroh.materialistic.NewActivity" />
+    </shortcut>
+    <shortcut android:icon="@drawable/sc_bookmark">
+        <intent android:targetPackage="io.github.hidroh.materialistic" android:action="android.intent.action.VIEW" android:targetClass="io.github.hidroh.materialistic.FavoriteActivity" />
+    </shortcut>
+    <shortcut android:icon="@drawable/sc_add">
+        <intent android:targetPackage="io.github.hidroh.materialistic" android:action="android.intent.action.VIEW" android:targetClass="io.github.hidroh.materialistic.SubmitActivity" />
+    </shortcut>
+</shortcuts>

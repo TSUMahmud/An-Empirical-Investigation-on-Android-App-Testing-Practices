@@ -1,0 +1,48 @@
+<resources>
+
+    <style name="Theme.Piwigo" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/piwigo_orange</item>
+        <item name="colorPrimaryDark">@color/piwigo_orange_secondary</item>
+        <item name="colorAccent">@color/piwigo_orange</item>
+        <item name="android:windowAnimationStyle">@style/Theme.Piwigo.Transition</item>
+    </style>
+
+    <style name="Theme.Piwigo.ManageAccounts" parent="Theme.Piwigo">
+        <item name="android:background">@color/piwigo_light_background_color</item>
+    </style>
+
+    <style name="Theme.Piwigo.ItemAlbum" parent="Theme.Piwigo">
+        <item name="android:background">@color/piwigo_light_background_color</item>
+    </style>
+
+    <style name="Theme.Piwigo.ItemAlbumCard" parent="Theme.Piwigo">
+        <item name="android:background">@color/card_background</item>
+    </style>
+
+    <style name="Theme.Piwigo.AlertDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorAccent">@color/piwigo_orange</item>
+        <item name="colorPrimary">@color/piwigo_orange</item>
+    </style>
+
+    <style name="Theme.Piwigo.ErrorDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorAccent">@color/piwigo_light_error_red</item>
+        <item name="colorPrimary">@color/piwigo_light_error_red</item>
+    </style>
+
+    <style name="Theme.Piwigo.NavDrawer" />
+
+    <style name="Theme.Piwigo.Login.CardView" parent="CardView">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Theme.Piwigo.EditText" parent="Theme.Piwigo">
+        <item name="android:background">@color/piwigo_text_field_color</item>
+    </style>
+
+    <!-- This will set the fade in animation on all your activities by default -->
+    <style name="Theme.Piwigo.Transition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+</resources>

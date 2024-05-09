@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VibrationAlarmScheduler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe.timing</a> &gt; <span class="el_source">VibrationAlarmScheduler.java</span></div><h1>VibrationAlarmScheduler.java</h1><pre class="source lang-java linenums">// VibrationAlarmScheduler.java --- Determines the next vibration time and
+// schedules new vibrate alarms using the Android alarm manager.
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+package com.jmstudios.chibe.timing;
+
+import android.content.Context;
+import android.content.Intent;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.annotation.SuppressLint;
+import android.util.Log;
+
+import java.util.Calendar;
+
+import com.jmstudios.chibe.timing.VibrationAlarmReceiver;
+import com.jmstudios.chibe.state.SettingsModel;
+
+<span class="nc" id="L34">public class VibrationAlarmScheduler {</span>
+<span class="fc" id="L35">    private static String TAG = &quot;VibrationAlarmScheduler&quot;;</span>
+<span class="fc" id="L36">    private static boolean DEBUG = true;</span>
+
+    // Cancels all alarms if the service is off, reschedules the alarm
+    // if the service is on.
+    public static void updateAlarms(Context context) {
+<span class="nc" id="L41">        SettingsModel settingsModel = new SettingsModel(context);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (settingsModel.isVibrationServiceOn())</span>
+<span class="nc" id="L43">            rescheduleAlarm(context);</span>
+        else
+<span class="nc" id="L45">            cancelAlarms(context);</span>
+<span class="nc" id="L46">    }</span>
+
+    // Removes all old alarms before scheduling a new one
+    public static void rescheduleAlarm(Context context) {
+<span class="nc" id="L50">        cancelAlarms(context);</span>
+
+<span class="nc" id="L52">        scheduleAlarm(context);</span>
+<span class="nc" id="L53">    }</span>
+
+    public static void cancelAlarms(Context context) {
+<span class="nc" id="L56">        AlarmManager alarmManager = (AlarmManager)</span>
+<span class="nc" id="L57">            context.getSystemService(Context.ALARM_SERVICE);</span>
+
+        // It doesn't matter what time we pass to
+        // getVibrationPendingIntent, since the extras aren't
+        // compared. See:
+        // https://developer.android.com/reference/android/app/AlarmManager.html#cancel(android.app.PendingIntent)
+<span class="nc" id="L63">        alarmManager.cancel(getVibrationPendingIntent</span>
+<span class="nc" id="L64">                            (context, Calendar.getInstance()));</span>
+<span class="nc" id="L65">    }</span>
+
+    // This method checks what android version is used and uses
+    // methods accordingly.
+    @SuppressLint(&quot;NewApi&quot;)
+    public static void scheduleAlarm(Context context) {
+<span class="nc" id="L71">        SettingsModel settingsModel = new SettingsModel(context);</span>
+
+        Calendar alarmTime = getNextAlarmTime
+<span class="nc" id="L74">            (Calendar.getInstance(),</span>
+<span class="nc" id="L75">             settingsModel.getSleepStart(),</span>
+<span class="nc" id="L76">             settingsModel.getSleepEnd(),</span>
+<span class="nc" id="L77">             settingsModel.getVibrationTimeInMinutes());</span>
+
+<span class="nc" id="L79">        AlarmManager alarmManager = (AlarmManager)</span>
+<span class="nc" id="L80">            context.getSystemService(Context.ALARM_SERVICE);</span>
+<span class="nc" id="L81">        PendingIntent vibrationPendingIntent =</span>
+<span class="nc" id="L82">            getVibrationPendingIntent(context, alarmTime);</span>
+
+        // In API 19 AlarmManager::set was made inexact and
+        // AlarmManager::setExact was introduced, since we always want
+        // to vibrate at exactly the right time, we use setExact on
+        // API 19+.  From API 23 AlarmManager::setExact aren't
+        // actually exact when the device is in a low power state, so
+        // we have to use AlarmManager::setExactAndAllowWhileIdle.
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (android.os.Build.VERSION.SDK_INT &gt;= 23) {</span>
+<span class="nc" id="L91">            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,</span>
+<span class="nc" id="L92">                                                   alarmTime.getTimeInMillis(),</span>
+                                                   vibrationPendingIntent);
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        } else if (android.os.Build.VERSION.SDK_INT &gt;= 19) {</span>
+<span class="nc" id="L95">            alarmManager.setExact(AlarmManager.RTC_WAKEUP,</span>
+<span class="nc" id="L96">                                  alarmTime.getTimeInMillis(),</span>
+                                  vibrationPendingIntent);
+        } else {
+<span class="nc" id="L99">            alarmManager.set(AlarmManager.RTC, alarmTime.getTimeInMillis(),</span>
+                             vibrationPendingIntent);
+        }
+<span class="nc" id="L102">    }</span>
+
+    public static PendingIntent getVibrationPendingIntent
+        (Context context, Calendar time) {
+<span class="nc" id="L106">        Intent vibrationIntent = new Intent(context, VibrationAlarmReceiver.class);</span>
+
+        // Save in the intent how many times the 'hour repeat pattern'
+        // should be repeated, if it should be repeated at all.
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if (time.get(Calendar.MINUTE) == 0) {</span>
+<span class="nc" id="L111">            int hour = time.get(Calendar.HOUR);</span>
+            // The hour field of the Calendar is 0 for 12:00 and
+            // 24:00, but we wan't to repeat 12 times for those.
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            int hourRepeatCount = hour == 0 ? 12 : hour;</span>
+
+<span class="nc" id="L116">            vibrationIntent.putExtra</span>
+<span class="nc" id="L117">                (VibrationAlarmReceiver.HOUR_REPEAT_COUNT_EXTRA,</span>
+                 hourRepeatCount);
+
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (DEBUG) Log.i(TAG, String.format</span>
+<span class="nc" id="L121">                             (&quot;Added an hour repeat extra of %d to an PendingIntent,&quot; +</span>
+                              &quot; the hour is %d.&quot;,
+<span class="nc" id="L123">                              hourRepeatCount, hour));</span>
+        }
+
+        // We don't need a specific requestcode
+<span class="nc" id="L127">        int requestCode = 0;</span>
+<span class="nc" id="L128">        return PendingIntent.getBroadcast</span>
+<span class="nc" id="L129">            (context, requestCode, vibrationIntent,</span>
+             // This flag is needed to correctly pass the extra's.
+             PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    // Chibe won't schedules vibrations during sleep (between sleepStart
+    // and sleepEnd).
+    // Vibration times can be any whole number of minutes, however, if the
+    // vibrate time is longer than the time from sleepEnd to sleepStart,
+    // it will just be called once every day, at sleepEnd.
+    public static Calendar getNextAlarmTime
+        (Calendar now, String sleepStart, String sleepEnd,
+         int vibrationTimeMinutes) {
+        // First we define the last sleepEnd and the next sleepStart
+        // and the next sleepEnd.
+<span class="fc" id="L144">        Calendar lastSleepStart = getCalendarFromTimeString(sleepStart, now);</span>
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">        if (lastSleepStart.after(now)) lastSleepStart.add(Calendar.DAY_OF_YEAR, -1);</span>
+
+<span class="fc" id="L147">        Calendar lastSleepEnd = getCalendarFromTimeString(sleepEnd, now);</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">        if (lastSleepEnd.after(now)) lastSleepEnd.add(Calendar.DAY_OF_YEAR, -1);</span>
+
+<span class="fc" id="L150">        Calendar nextSleepStart = getCalendarFromTimeString(sleepStart, now);</span>
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">        if (nextSleepStart.before(now)) nextSleepStart.add(Calendar.DAY_OF_YEAR, 1);</span>
+
+<span class="fc" id="L153">        Calendar nextSleepEnd = getCalendarFromTimeString(sleepEnd, now);</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">        if (nextSleepEnd.before(now)) nextSleepEnd.add(Calendar.DAY_OF_YEAR, 1);</span>
+
+        // We start off with the last sleepEnd
+<span class="fc" id="L157">        Calendar nextAlarm = (Calendar) lastSleepEnd.clone();</span>
+
+        // Then we add the vibrate time to the nextAlarm Calendar, until
+        // nextAlarm is after now. If no time is found after now and
+        // before sleepStart, we schedule the next alarm for the next
+        // sleepEnd.
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        while (!nextAlarm.after(now)) {</span>
+<span class="pc bpc" id="L164" title="1 of 2 branches missed.">            if (nextAlarm.after(nextSleepStart) ||</span>
+                // If the last sleepEnd is before the lastSleepStart,
+                // that means that we are in the sleep period and we
+                // should return the nextSleepStart.
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">                lastSleepEnd.before(lastSleepStart))</span>
+<span class="fc" id="L169">                return nextSleepEnd;</span>
+
+<span class="nc" id="L171">            nextAlarm.add(Calendar.MINUTE, vibrationTimeMinutes);</span>
+        }
+
+<span class="nc" id="L174">        return nextAlarm;</span>
+    }
+
+    /**
+     * @param time     should be a 24-hour formatted string of the form &quot;HH:MM&quot;
+     * @param day      should be a Calendar with the day that will be
+     * on the returned calendar, the hour, minute, second and
+     * millisecond field of this calendar is irrelevant for this
+     * function.
+     */
+    public static Calendar getCalendarFromTimeString
+        (String time, Calendar day) {
+<span class="fc" id="L186">        Calendar cal = (Calendar) day.clone();</span>
+<span class="fc" id="L187">        cal.set(Calendar.MILLISECOND, 0);</span>
+<span class="fc" id="L188">        cal.set(Calendar.SECOND, 0);</span>
+<span class="fc" id="L189">        cal.set(Calendar.MINUTE, parseMinutesFromTimeString(time));</span>
+<span class="fc" id="L190">        cal.set(Calendar.HOUR_OF_DAY, parseHoursFromTimeString(time));</span>
+
+<span class="fc" id="L192">        return cal;</span>
+    }
+
+    // Accepts a 24-hour formatted string of the form &quot;HH:MM&quot;
+    public static int parseMinutesFromTimeString(String time) {
+<span class="fc" id="L197">        return Integer.parseInt(time.split(&quot;:&quot;)[1]);</span>
+    }
+
+    // Accepts a 24-hour formatted string of the form &quot;HH:MM&quot;
+    public static int parseHoursFromTimeString(String time) {
+<span class="fc" id="L202">        return Integer.parseInt(time.split(&quot;:&quot;)[0]);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

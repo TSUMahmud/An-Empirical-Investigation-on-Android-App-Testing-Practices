@@ -1,0 +1,84 @@
+image: jangrewe/gitlab-ci-android
+
+variables:
+  ANDROID_COMPILE_SDK: "25"
+  ANDROID_BUILD_TOOLS: "24.0.2"
+  ANDROID_SDK_TOOLS: "24.4.1"
+
+before_script:
+  - export GRADLE_USER_HOME=$PWD/.gradle
+  - chmod +x ./gradlew
+  - if [ ! -d "/cache$ANDROID_HOME" ]; then mv $ANDROID_HOME /cache$ANDROID_HOME; fi
+  - export ANDROID_HOME=/cache$ANDROID_HOME
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - ./gradlew assembleDebug
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - app/build/outputs/
+
+unitTest:
+  stage: test
+  script:
+    - ./gradlew test
+  artifacts:
+    when: on_failure
+    expire_in: 3 day
+    paths:
+      - app/build/reports/
+    reports:
+      junit: app/build/test-results/testDebugUnitTest/TEST-*.xml
+
+coherenceTest:
+  stage: test
+  image: python:latest
+  script:
+    - pip install junit-xml
+    - cd testeur/regions
+    - python testerCoherenceDonnees.py
+  artifacts:
+    when: on_failure
+    expire_in: 3 day
+    paths:
+      - testeur/regions/rapport
+    reports:
+      junit: testeur/regions/rapport/rapport.xml
+
+parseurTest:
+  stage: test
+  image: python:latest
+  script:
+    - pip install pyyaml
+    - pip install junit-xml
+    - cd parseur
+    - python testerImportConfig.py
+  artifacts:
+    when: on_failure
+    expire_in: 3 day
+    reports:
+      junit: parseur/rapport/rapport.xml
+
+deployToEditor:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y lftp
+    - lftp -e "set ftp:ssl-allow no; open $FTP_HOST; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --verbose --delete app/src/main/assets/ /data/; bye"
+  allow_failure: true
+  rules:
+    - if: "$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH"
+      changes:
+        - app/src/main/assets/*
+      when: always
+    - changes:
+        - app/src/main/assets/*
+      when: manual
+    - when: never

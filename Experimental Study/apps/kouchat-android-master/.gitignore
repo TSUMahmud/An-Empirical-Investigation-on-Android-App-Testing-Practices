@@ -1,0 +1,13 @@
+.idea
+*.iml
+*.ipr
+*.iws
+gen
+gen-external-apklibs
+out
+target
+classes
+tmp
+.gradle
+local.properties
+build

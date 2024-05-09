@@ -1,0 +1,6 @@
+idExterne;nom;type;ordre;couleur;vCreation;vMaj;vSuppression
+SNCF_HautsFrance_U;TER Hauts-de-France;Train;3916000;#333333;106;130;0
+Ligne_MEL_TR;Tram R;Tramway;3327800;#00AE6D;126;130;0
+Ligne_MEL_M1;Métro 1;Metro;3312010;#FFCF29;126;130;0
+Ligne_MEL_M2;Métro 2;Metro;3312020;#F2653F;126;130;0
+Ligne_MEL_TT;Tram T;Tramway;3328000;#F79256;126;130;0

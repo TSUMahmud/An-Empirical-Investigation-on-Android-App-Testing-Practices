@@ -1,0 +1,336 @@
+.class public final Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;
+.super Ldagger/internal/Binding;
+.source "ListFragment$$InjectAdapter.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Ldagger/internal/Binding<",
+        "Lio/github/hidroh/materialistic/ListFragment;",
+        ">;"
+    }
+.end annotation
+
+
+# instance fields
+.field private mAlgoliaItemManager:Ldagger/internal/Binding;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ldagger/internal/Binding<",
+            "Lio/github/hidroh/materialistic/data/ItemManager;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private mHnItemManager:Ldagger/internal/Binding;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ldagger/internal/Binding<",
+            "Lio/github/hidroh/materialistic/data/ItemManager;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private mIoThreadScheduler:Ldagger/internal/Binding;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ldagger/internal/Binding<",
+            "Lrx/Scheduler;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private mPopularItemManager:Ldagger/internal/Binding;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ldagger/internal/Binding<",
+            "Lio/github/hidroh/materialistic/data/ItemManager;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private supertype:Ldagger/internal/Binding;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ldagger/internal/Binding<",
+            "Lio/github/hidroh/materialistic/BaseListFragment;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 4
+
+    .line 37
+    const-string v0, "io.github.hidroh.materialistic.ListFragment"
+
+    const-string v1, "members/io.github.hidroh.materialistic.ListFragment"
+
+    const-class v2, Lio/github/hidroh/materialistic/ListFragment;
+
+    const/4 v3, 0x0
+
+    invoke-direct {p0, v0, v1, v3, v2}, Ldagger/internal/Binding;-><init>(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/Object;)V
+
+    .line 38
+    return-void
+.end method
+
+
+# virtual methods
+.method public attach(Ldagger/internal/Linker;)V
+    .locals 7
+    .param p1, "linker"    # Ldagger/internal/Linker;
+
+    .line 47
+    const-string v0, "@javax.inject.Named(value=hn)/io.github.hidroh.materialistic.data.ItemManager"
+
+    const-class v1, Lio/github/hidroh/materialistic/ListFragment;
+
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v2
+
+    invoke-virtual {p1, v0, v1, v2}, Ldagger/internal/Linker;->requestBinding(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/ClassLoader;)Ldagger/internal/Binding;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mHnItemManager:Ldagger/internal/Binding;
+
+    .line 48
+    const-string v0, "@javax.inject.Named(value=algolia)/io.github.hidroh.materialistic.data.ItemManager"
+
+    const-class v1, Lio/github/hidroh/materialistic/ListFragment;
+
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v2
+
+    invoke-virtual {p1, v0, v1, v2}, Ldagger/internal/Linker;->requestBinding(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/ClassLoader;)Ldagger/internal/Binding;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mAlgoliaItemManager:Ldagger/internal/Binding;
+
+    .line 49
+    const-string v0, "@javax.inject.Named(value=popular)/io.github.hidroh.materialistic.data.ItemManager"
+
+    const-class v1, Lio/github/hidroh/materialistic/ListFragment;
+
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v2
+
+    invoke-virtual {p1, v0, v1, v2}, Ldagger/internal/Linker;->requestBinding(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/ClassLoader;)Ldagger/internal/Binding;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mPopularItemManager:Ldagger/internal/Binding;
+
+    .line 50
+    const-string v0, "@javax.inject.Named(value=io)/rx.Scheduler"
+
+    const-class v1, Lio/github/hidroh/materialistic/ListFragment;
+
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v2
+
+    invoke-virtual {p1, v0, v1, v2}, Ldagger/internal/Linker;->requestBinding(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/ClassLoader;)Ldagger/internal/Binding;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mIoThreadScheduler:Ldagger/internal/Binding;
+
+    .line 51
+    const-string v2, "members/io.github.hidroh.materialistic.BaseListFragment"
+
+    const-class v3, Lio/github/hidroh/materialistic/ListFragment;
+
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v4
+
+    const/4 v5, 0x0
+
+    const/4 v6, 0x1
+
+    move-object v1, p1
+
+    invoke-virtual/range {v1 .. v6}, Ldagger/internal/Linker;->requestBinding(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/ClassLoader;ZZ)Ldagger/internal/Binding;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->supertype:Ldagger/internal/Binding;
+
+    .line 52
+    return-void
+.end method
+
+.method public get()Lio/github/hidroh/materialistic/ListFragment;
+    .locals 1
+
+    .line 73
+    new-instance v0, Lio/github/hidroh/materialistic/ListFragment;
+
+    invoke-direct {v0}, Lio/github/hidroh/materialistic/ListFragment;-><init>()V
+
+    .line 74
+    .local v0, "result":Lio/github/hidroh/materialistic/ListFragment;
+    invoke-virtual {p0, v0}, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->injectMembers(Lio/github/hidroh/materialistic/ListFragment;)V
+
+    .line 75
+    return-object v0
+.end method
+
+.method public bridge synthetic get()Ljava/lang/Object;
+    .locals 1
+
+    .line 25
+    invoke-virtual {p0}, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->get()Lio/github/hidroh/materialistic/ListFragment;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public getDependencies(Ljava/util/Set;Ljava/util/Set;)V
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/Set<",
+            "Ldagger/internal/Binding<",
+            "*>;>;",
+            "Ljava/util/Set<",
+            "Ldagger/internal/Binding<",
+            "*>;>;)V"
+        }
+    .end annotation
+
+    .line 60
+    .local p1, "getBindings":Ljava/util/Set;, "Ljava/util/Set<Ldagger/internal/Binding<*>;>;"
+    .local p2, "injectMembersBindings":Ljava/util/Set;, "Ljava/util/Set<Ldagger/internal/Binding<*>;>;"
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mHnItemManager:Ldagger/internal/Binding;
+
+    invoke-interface {p2, v0}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    .line 61
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mAlgoliaItemManager:Ldagger/internal/Binding;
+
+    invoke-interface {p2, v0}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    .line 62
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mPopularItemManager:Ldagger/internal/Binding;
+
+    invoke-interface {p2, v0}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    .line 63
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mIoThreadScheduler:Ldagger/internal/Binding;
+
+    invoke-interface {p2, v0}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    .line 64
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->supertype:Ldagger/internal/Binding;
+
+    invoke-interface {p2, v0}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    .line 65
+    return-void
+.end method
+
+.method public injectMembers(Lio/github/hidroh/materialistic/ListFragment;)V
+    .locals 1
+    .param p1, "object"    # Lio/github/hidroh/materialistic/ListFragment;
+
+    .line 84
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mHnItemManager:Ldagger/internal/Binding;
+
+    invoke-virtual {v0}, Ldagger/internal/Binding;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lio/github/hidroh/materialistic/data/ItemManager;
+
+    iput-object v0, p1, Lio/github/hidroh/materialistic/ListFragment;->mHnItemManager:Lio/github/hidroh/materialistic/data/ItemManager;
+
+    .line 85
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mAlgoliaItemManager:Ldagger/internal/Binding;
+
+    invoke-virtual {v0}, Ldagger/internal/Binding;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lio/github/hidroh/materialistic/data/ItemManager;
+
+    iput-object v0, p1, Lio/github/hidroh/materialistic/ListFragment;->mAlgoliaItemManager:Lio/github/hidroh/materialistic/data/ItemManager;
+
+    .line 86
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mPopularItemManager:Ldagger/internal/Binding;
+
+    invoke-virtual {v0}, Ldagger/internal/Binding;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lio/github/hidroh/materialistic/data/ItemManager;
+
+    iput-object v0, p1, Lio/github/hidroh/materialistic/ListFragment;->mPopularItemManager:Lio/github/hidroh/materialistic/data/ItemManager;
+
+    .line 87
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->mIoThreadScheduler:Ldagger/internal/Binding;
+
+    invoke-virtual {v0}, Ldagger/internal/Binding;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/Scheduler;
+
+    iput-object v0, p1, Lio/github/hidroh/materialistic/ListFragment;->mIoThreadScheduler:Lrx/Scheduler;
+
+    .line 88
+    iget-object v0, p0, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->supertype:Ldagger/internal/Binding;
+
+    invoke-virtual {v0, p1}, Ldagger/internal/Binding;->injectMembers(Ljava/lang/Object;)V
+
+    .line 89
+    return-void
+.end method
+
+.method public bridge synthetic injectMembers(Ljava/lang/Object;)V
+    .locals 0
+
+    .line 25
+    check-cast p1, Lio/github/hidroh/materialistic/ListFragment;
+
+    invoke-virtual {p0, p1}, Lio/github/hidroh/materialistic/ListFragment$$InjectAdapter;->injectMembers(Lio/github/hidroh/materialistic/ListFragment;)V
+
+    return-void
+.end method

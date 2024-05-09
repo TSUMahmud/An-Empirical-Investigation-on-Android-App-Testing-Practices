@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View android:id="@id/background" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_alignLeft="@id/title" android:layout_alignTop="@id/title" android:layout_alignRight="@id/title" android:layout_alignBottom="@id/comment" />
+    <io.github.hidroh.materialistic.widget.TextView android:id="@id/title" android:paddingTop="@dimen/padding" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/loading_text" android:lines="@null" android:layout_alignParentTop="true" style="@style/textTitleStyle" />
+    <TextView android:id="@id/source" android:text="@string/loading_text" android:layout_toLeftOf="@id/button_comment" android:layout_below="@id/title" style="@style/textSubtitleStyle.Italic" />
+    <TextView android:id="@id/posted" android:paddingBottom="@dimen/padding" android:text="@string/loading_text" android:layout_toLeftOf="@id/button_comment" android:layout_below="@id/source" style="@style/textSubtitleStyle" />
+    <androidx.appcompat.widget.AppCompatTextView android:id="@id/comment" android:background="?selectableItemBackground" android:paddingLeft="@dimen/padding_text" android:paddingRight="@dimen/padding_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="@null" android:layout_toLeftOf="@id/button_more" android:layout_below="@id/title" app:textAllCaps="false" style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+    <include android:id="@id/button_more" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/title" android:layout_alignTop="@id/comment" android:layout_alignBottom="@id/comment" android:layout_alignParentRight="true" layout="@layout/button_more" />
+</merge>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_widget_theme_options">
+        <item>@string/theme_transparent</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_light</item>
+    </string-array>
+    <string-array name="pref_widget_theme_values">
+        <item>@string/pref_widget_theme_value_transparent</item>
+        <item>@string/pref_widget_theme_value_dark</item>
+        <item>@string/pref_widget_theme_value_light</item>
+    </string-array>
+</resources>

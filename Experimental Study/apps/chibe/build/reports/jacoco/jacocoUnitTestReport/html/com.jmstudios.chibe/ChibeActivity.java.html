@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChibeActivity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe</a> &gt; <span class="el_source">ChibeActivity.java</span></div><h1>ChibeActivity.java</h1><pre class="source lang-java linenums">// ChibeActivity.java --- Lets the user control the app's settings
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package com.jmstudios.chibe;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.app.FragmentManager;
+import android.util.Log;
+import android.content.SharedPreferences;
+import android.content.Intent;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuInflater;
+import android.widget.CompoundButton;
+import android.content.Context;
+import android.support.v7.widget.SwitchCompat;
+
+import com.jmstudios.chibe.timing.VibrationAlarmScheduler;
+import com.jmstudios.chibe.state.SettingsModel;
+
+<span class="nc" id="L39">public class ChibeActivity extends AppCompatActivity</span>
+    implements SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final String TAG = &quot;ChibeActivity&quot;;
+    private static final boolean DEBUG = true;
+
+    private static final String FRAGMENT_TAG_CHIBE
+        = &quot;com.jmstudios.chibe.fragment.tag.CHIBE&quot;;
+
+    private Context mContext;
+    private SettingsModel settingsModel;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+<span class="nc" id="L52">        settingsModel = new SettingsModel(this);</span>
+
+        // Set the theme before calling super
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (settingsModel.isDarkTheme())</span>
+<span class="nc" id="L56">            setTheme(R.style.AppThemeDark);</span>
+
+<span class="nc" id="L58">        super.onCreate(savedInstanceState);</span>
+<span class="nc" id="L59">        setContentView(R.layout.chibe_activity);</span>
+
+<span class="nc" id="L61">        mContext = this;</span>
+
+<span class="nc" id="L63">        FragmentManager fragmentManager = getFragmentManager();</span>
+        ChibeFragment fragment;
+
+        // If the activity is recreated, we retrieve the existing
+        // fragment from the FragmentManager.
+        // Otherwise we create a new fragment and attach it.
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (savedInstanceState != null) {</span>
+<span class="nc" id="L70">            if (DEBUG) Log.i(TAG, &quot;onCreate - Recreation&quot; +</span>
+                             &quot; - retrieving stored fragment&quot;);
+
+<span class="nc" id="L73">            fragment = (ChibeFragment) fragmentManager.findFragmentByTag</span>
+<span class="nc" id="L74">                (FRAGMENT_TAG_CHIBE);</span>
+        } else {
+<span class="nc" id="L76">            if (DEBUG) Log.i(TAG, &quot;onCreate - First creation&quot; +</span>
+                             &quot; - creating a new fragment&quot;);
+
+<span class="nc" id="L79">            fragment = new ChibeFragment();</span>
+
+<span class="nc" id="L81">            fragmentManager.beginTransaction()</span>
+<span class="nc" id="L82">                .replace(R.id.fragment_container, fragment, FRAGMENT_TAG_CHIBE)</span>
+<span class="nc" id="L83">                .commit();</span>
+        }
+
+        // Show intro if the user hasn't seen it yet
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (!settingsModel.isIntroShown()) {</span>
+<span class="nc" id="L88">            startIntro(null);</span>
+        }
+<span class="nc" id="L90">    }</span>
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // We need to inflate the menu for the app bar, to display the switch
+<span class="nc" id="L95">        MenuInflater inflater = getMenuInflater();</span>
+<span class="nc" id="L96">        inflater.inflate(R.menu.vibration_activity_menu, menu);</span>
+
+<span class="nc" id="L98">        final MenuItem item = menu.findItem(R.id.vibration_switch);</span>
+<span class="nc" id="L99">        SwitchCompat mainSwitch = (SwitchCompat) item.getActionView();</span>
+<span class="nc" id="L100">        mainSwitch.setOnCheckedChangeListener</span>
+<span class="nc" id="L101">            (new CompoundButton.OnCheckedChangeListener() {</span>
+                    @Override
+                    public void onCheckedChanged
+                        (CompoundButton buttonView, boolean isChecked) {
+<span class="nc" id="L105">                        settingsModel.setVibrationServiceOn(isChecked);</span>
+<span class="nc" id="L106">                    }</span>
+                });
+
+        // Initialise the switch to the current vibrate service state.
+<span class="nc" id="L110">        mainSwitch.setChecked(settingsModel.isVibrationServiceOn());</span>
+<span class="nc" id="L111">        VibrationAlarmScheduler.updateAlarms(this);</span>
+
+<span class="nc" id="L113">        return true;</span>
+    }
+
+    @Override
+    public void onStart() {
+<span class="nc" id="L118">        super.onStart();</span>
+<span class="nc" id="L119">        settingsModel.getSharedPreferences()</span>
+<span class="nc" id="L120">            .registerOnSharedPreferenceChangeListener(this);</span>
+<span class="nc" id="L121">    }</span>
+
+    @Override
+    public void onStop() {
+<span class="nc" id="L125">        settingsModel.getSharedPreferences()</span>
+<span class="nc" id="L126">            .unregisterOnSharedPreferenceChangeListener(this);</span>
+<span class="nc" id="L127">        super.onStop();</span>
+<span class="nc" id="L128">    }</span>
+
+    @Override
+    public void onSharedPreferenceChanged
+        (SharedPreferences sharedPreferences, String key) {
+<span class="nc" id="L133">        if (DEBUG) Log.d(TAG, &quot;Received preference change&quot; +</span>
+                         &quot;for pref key: &quot; + key);
+
+<span class="nc bnc" id="L136" title="All 2 branches missed.">        switch (key) {</span>
+        case SettingsModel.mSleepStartPrefKey:
+        case SettingsModel.mSleepEndPrefKey:
+        case SettingsModel.mVibrationTimePrefKey:
+        case SettingsModel.mVibrationServiceOnPrefKey:
+<span class="nc" id="L141">            VibrationAlarmScheduler.updateAlarms(this);</span>
+            break;
+        }
+<span class="nc" id="L144">    }</span>
+
+    // This method is also used by the floating action button, through the
+    // android:onClick attribute. This attribute requires a public method with a
+    // View as parameter. However, this method simply ignores the View
+    // parameter.
+    public void startIntro(View v) {
+<span class="nc" id="L151">        Intent introIntent = new Intent(this, ChibeIntro.class);</span>
+<span class="nc" id="L152">        startActivity(introIntent);</span>
+
+        // Save that the intro has been shown
+<span class="nc" id="L155">        settingsModel.setIntroShown(true);</span>
+<span class="nc" id="L156">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

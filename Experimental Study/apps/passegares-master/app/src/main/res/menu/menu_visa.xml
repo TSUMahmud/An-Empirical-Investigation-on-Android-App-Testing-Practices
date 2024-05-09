@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/afficherFournit"
+        android:id="@+id/voirFourni"
+        android:checkable="true"
+        android:checked="false" />
+    <item android:title="@string/afficherNecessite"
+        android:id="@+id/voirNecessite"
+        android:checkable="true"
+        android:checked="false" />
+    <item android:title="@string/afficherNiveau"
+        android:id="@+id/voirNiveau"
+        android:checkable="true"
+        android:checked="false" />
+</menu>

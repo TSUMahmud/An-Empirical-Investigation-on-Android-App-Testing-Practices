@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.appcompat.widget.Toolbar android:theme="@style/AppToolbarTheme" android:id="@id/toolbar" android:background="?android:colorBackground" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_marginRight="@dimen/activity_horizontal_margin" android:baselineAligned="false" android:layout_below="@id/toolbar">
+        <ScrollView android:scrollbarStyle="outsideInset" android:background="?colorCardBackground" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:clipToPadding="false" android:layout_width="0.0dip" android:layout_height="fill_parent" android:fillViewport="true" android:layout_weight="3.0" android:elevation="@dimen/cardview_elevation">
+            <LinearLayout android:orientation="vertical" android:id="@id/content_frame" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatEditText android:gravity="top" android:id="@id/edittext_body" android:background="@null" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/comment_hint" android:inputType="textCapSentences|textMultiLine" />
+                <View android:id="@id/empty" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+            </LinearLayout>
+        </ScrollView>
+        <LinearLayout android:orientation="vertical" android:id="@id/quote" android:background="?colorCardBackground" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_marginTop="@dimen/activity_vertical_margin" android:layout_marginBottom="@dimen/activity_vertical_margin" android:layout_weight="2.0" android:elevation="1.0dip">
+            <io.github.hidroh.materialistic.widget.TintableTextView android:enabled="false" android:gravity="center_vertical" android:id="@id/toggle" android:background="?selectableItemBackground" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="@string/original_content" style="@style/textTitleStyle" />
+            <ScrollView android:scrollbarStyle="outsideInset" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:scrollbars="vertical" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:fillViewport="true">
+                <TextView android:id="@id/text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textIsSelectable="true" style="@style/TextAppearance.AppCompat.Medium" />
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

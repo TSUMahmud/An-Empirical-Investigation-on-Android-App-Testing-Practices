@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="comments_count">
+        <item quantity="other">%1$s 条评论</item>
+    </plurals>
+    <plurals name="new_stories_count">
+        <item quantity="other">%1$s 条新帖子</item>
+    </plurals>
+    <plurals name="score">
+        <item quantity="other">%1$s 人气</item>
+    </plurals>
+    <plurals name="showing_new_stories">
+        <item quantity="other">展示 %1$s 条新帖子</item>
+    </plurals>
+    <plurals name="submissions_count">
+        <item quantity="other">%1$s 处足迹</item>
+    </plurals>
+</resources>

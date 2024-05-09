@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fr.nocle.passegares">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".navigation.MainMenuActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".visa.VisaActivity" />
+        <activity android:name=".preferences.PreferencesActivity" />
+        <activity android:name=".preferences.PreferencesAvanceesActivity" />
+        <activity android:name=".visa.ResumeVisaFragment" />
+        <activity android:name=".GareActivity" />
+        <activity android:name=".MonnaieFragment" />
+        <activity android:name=".CreditsActivity" />
+        <activity android:name=".region.AjoutRegionActivity" />
+        <activity android:name=".navigation.PremierLancementActivity" />
+
+        <service
+            android:name=".LocationService"
+            android:exported="false" />
+
+        <activity android:name=".BoutiqueActivity" />
+        <activity android:name=".succes.SuccesFragment" />
+    </application>
+
+</manifest>

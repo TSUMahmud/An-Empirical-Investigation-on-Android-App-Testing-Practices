@@ -1,0 +1,17 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/caches
+/.idea/libraries
+.DS_Store
+/build
+/captures
+/editeur/node_modules/
+/testeur/regions/rapport/
+/projectFilesBackup/
+app/app.iml
+parseur/rapport/
+*.pyc
+.~lock.*
+parseur/data.csv

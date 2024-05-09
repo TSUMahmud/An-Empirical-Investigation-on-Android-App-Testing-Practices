@@ -1,0 +1,15 @@
+<resources>
+    <!-- Login logo position -->
+    <dimen name="login_logo_margin_top">40dp</dimen>
+    <dimen name="login_logo_margin_bottom">0dp</dimen>
+
+    <!-- Height of the header view of the navigation drawer -->
+    <dimen name="nav_header_size">200dp</dimen>
+    <!-- Content padding in nav header -->
+    <dimen name="nav_header_padding">16dp</dimen>
+    <!-- Username text size in nav header -->
+    <dimen name="nav_header_user_text_size">18sp</dimen>
+    <!-- details text size in nav header -->
+    <dimen name="nav_header_details_text_size">12sp</dimen>
+
+</resources>

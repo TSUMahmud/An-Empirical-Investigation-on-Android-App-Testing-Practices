@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Navigeren naar startpositie"</string>
+    <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
+    <string msgid="6623331958280229229" name="abc_action_bar_home_subtitle_description_format">"%1$s, %2$s, %3$s"</string>
+    <string msgid="1594238315039666878" name="abc_action_bar_up_description">"Omhoog navigeren"</string>
+    <string msgid="3588849162933574182" name="abc_action_menu_overflow_description">"Meer opties"</string>
+    <string msgid="4076576682505996667" name="abc_action_mode_done">"Gereed"</string>
+    <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Alles weergeven"</string>
+    <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Een app selecteren"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"UIT"</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"AAN"</string>
+    <string msgid="7723749260725869598" name="abc_search_hint">"Zoeken…"</string>
+    <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Zoekopdracht wissen"</string>
+    <string msgid="2550479030709304392" name="abc_searchview_description_query">"Zoekopdracht"</string>
+    <string msgid="8264924765203268293" name="abc_searchview_description_search">"Zoeken"</string>
+    <string msgid="8928215447528550784" name="abc_searchview_description_submit">"Zoekopdracht verzenden"</string>
+    <string msgid="893419373245838918" name="abc_searchview_description_voice">"Gesproken zoekopdracht"</string>
+    <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Delen met"</string>
+    <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Delen met %s"</string>
+    <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Samenvouwen"</string>
+    <string name="app_name">Chibe</string>
+    <string name="base_vibration_pattern_preference_title">Basis-trilpatroon</string>
+    <string name="cancel_dialog">Annuleren</string>
+    <string name="chibe_intro_label">Introductie</string>
+    <string name="chibe_pattern_entries_0">Patroon: .. _ ..</string>
+    <string name="chibe_pattern_entries_1">Patroon: _ .. _</string>
+    <string name="chibe_pattern_entries_2">Patroon: _ _</string>
+    <string name="chibe_pattern_entries_3">Patroon: _</string>
+    <string name="chibe_pattern_entries_4">Patroon: ..</string>
+    <string name="chibe_pattern_entries_5">Patroon: . _ ...</string>
+    <string name="chibe_pattern_entries_6">Patroon: . _ . _ .</string>
+    <string name="chibe_pattern_entries_custom">Aangepast</string>
+    <string name="chibe_settings_label">Chibe</string>
+    <string name="contact_email_adress">mailto:marienraat@riseup.net</string>
+    <string name="custom_pattern_dialog">Aangepast patroon</string>
+    <string name="custom_pattern_hint">Gebruik de knoppen om een patroon te creëren</string>
+    <string name="dark_theme_preference_title">Donker thema</string>
+    <string name="delete_vibration">⌫ DEL</string>
+    <string name="email_me_preference_summary">Doe suggesties of
+ laat me weten wat u ervan vindt</string>
+    <string name="email_me_preference_title">Stuur een e-mail naar
+ marienraat@riseup.net</string>
+    <string name="hour_repeat_preference_summary">Meerdere keren per uur trillen in het uur-trilpatroon om aan te geven welke tijd het is. Voorbeeld: om 14:00 zal Chibe trillen in het basispatroon en dan 2 keer in het uurpatroon.</string>
+    <string name="hour_repeat_preference_title">Speciale trilling herhalen voor de uren</string>
+    <string name="hour_vibration_pattern_preference_title">Uur-trilpatroon</string>
+    <string name="intro_slide_1_text">Vroeger hadden veel huizen een
+ klokkenspel of koekoeksklok, die elk uur een geluid
+ maakte. Maar met de huidige technologie hoeft u niemand te storen
+ met een hard geluid. Chibe laat simpelweg uw telefoon trillen, geheel
+ automatisch!</string>
+    <string name="intro_slide_1_title">Welkom bij Chibe!</string>
+    <string name="intro_slide_2_text">Houdt zorgeloos de tijd bij met Chibe,
+ tijdens welke activiteit dan ook. Op opgegeven tijden trilt uw telefoon
+ om u subtiel te doen herinneren aan de tijd. U kunt hierdoor uw tijd efficiënter
+ benutten en beter verdelen.</string>
+    <string name="intro_slide_2_title">Houdt de tijd bij</string>
+    <string name="intro_slide_3_text">Chibe zal u niet lastigvallen tijdens
+ uw slaap. Pas de slaaptijden aan en rust uit zonder gestoord te
+ worden!</string>
+    <string name="intro_slide_3_title">Slaapt wanneer u slaapt</string>
+    <string name="intro_slide_4_text">Chibe stelt u in staat te kiezen uit
+ verschillende trillingspatronen. Kies het patroon dat het beste bij u past, zodat
+ u Chibe niet verward met reguliere meldingen.</string>
+    <string name="intro_slide_4_title">Aangepaste trillingspatronen</string>
+    <string name="intro_slide_5_text">Druk op de schakelaar in rechterbovenhoek
+ om Chibe in te schakelen en aan de slag te gaan!</string>
+    <string name="intro_slide_5_title">Aan de slag!</string>
+    <string name="long_vibration">Lang</string>
+    <string name="ok_dialog">Oké</string>
+    <string name="pref_category_other">Overig</string>
+    <string name="pref_category_timing">Timing</string>
+    <string name="pref_category_vibration">Trillingspatronen</string>
+    <string name="project_page_preference_summary">Voor het vinden van meer informatie,
+ het achterlaten van feedback en het bijdragen aan</string>
+    <string name="project_page_preference_title">Bezoek de projectpagina</string>
+    <string name="project_page_url">https://github.com/raatmarien/chibe</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Zoeken"</string>
+    <string name="set_dialog">Instellen</string>
+    <string name="short_vibration">Kort</string>
+    <string name="sleep_end_preference_title">Beëindig het slapen om</string>
+    <string name="sleep_start_preference_title">Begin met slapen om</string>
+    <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="test_hour_vibration_preference_summary">Laat uw toestel nu trillen in het uur-trilpatroon</string>
+    <string name="test_hour_vibration_preference_title">Uur-trilpatroon testen</string>
+    <string name="test_normal_vibration_preference_summary">Laat uw apparaat nu trillen in het basis-trilpatroon</string>
+    <string name="test_normal_vibration_preference_title">Basis-trilpatroon testen</string>
+    <string name="vibrate_during_calls_preference_summary">Laat Chibe trillen tijdens een telefoongesprek</string>
+    <string name="vibrate_during_calls_preference_title">Trillen tijdens bellen</string>
+    <string name="vibrate_during_dnd_preference_summary">Zorgt ervoor dat Chibe
+ uw telefoon laat trillen, zelfs als deze zich bevindt in de
+ Niet storen-modus.</string>
+    <string name="vibrate_during_dnd_preference_title">Trillen in de
+ Niet storen-modus</string>
+    <string name="vibration_interval_preference_title">Trillingstussenpose</string>
+    <string name="vibration_time_entries_0">elke minuut</string>
+    <string name="vibration_time_entries_1">elke 5 minuten</string>
+    <string name="vibration_time_entries_2">elke 10 minuten</string>
+    <string name="vibration_time_entries_3">elke 15 minuten</string>
+    <string name="vibration_time_entries_4">elke 20 minuten</string>
+    <string name="vibration_time_entries_5">elk halfuur</string>
+    <string name="vibration_time_entries_6">elk uur</string>
+    <string name="vibration_time_entries_7">elke twee uur</string>
+</resources>

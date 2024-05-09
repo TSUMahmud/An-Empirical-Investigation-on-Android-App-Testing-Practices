@@ -1,0 +1,11 @@
+link_download: https://data.angers.fr/api/datasets/1.0/horaires-theoriques-et-arrets-du-reseau-irigo-gtfs/alternative_exports/keolis_irigo_angers_20181009_20190106_zip/
+prefixIdExterne: IRIGO
+default_value:
+    exploitant: IRIGO
+    dossierId: PaysLoire
+lignes: True
+ignore_values:
+substitue:
+    idExterne:
+        IRIGOzone_LES_GARES: SNCF01586
+typeFile: gtfs

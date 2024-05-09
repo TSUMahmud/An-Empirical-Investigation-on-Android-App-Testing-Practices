@@ -1,0 +1,6 @@
+idExterne;nom;type;ordre;couleur;vCreation;vMaj;vSuppression
+SNCF_Bretagne_U;TER BreizhGo;Train;12916000;#689dd4;106;137;0
+STAR_A;Métro A;Metro;0;#EE1D23;135;0;0
+BIBUS_A;Ligne A;Tramway;0;#E2078D;135;0;0
+BIBUS_C;Ligne C;Telepherique;0;#FF0000;135;0;0
+CFTA_VT;La Vapeur du Trieux;Train;0;#000000;135;0;0

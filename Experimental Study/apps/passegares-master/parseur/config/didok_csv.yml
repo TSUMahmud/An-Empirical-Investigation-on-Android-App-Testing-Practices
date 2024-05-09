@@ -1,0 +1,18 @@
+# Source https://opentransportdata.swiss/fr/dataset/bav_liste
+header:
+  Dst-Nr85: idExterne
+  Name: nom
+  E-Koord.: est
+  N-Koord.: nord
+prefixIdExterne: DIDOK
+default_value:
+    exploitant: DIDOK
+    dossierId: Suisse
+lignes: False
+ignore_values:
+substitue:
+convertCoordonateOrigin: LV95
+typeFile: csv
+localFile: True
+separator: ","
+lignesType: Trains

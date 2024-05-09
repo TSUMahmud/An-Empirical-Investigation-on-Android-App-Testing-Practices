@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:title="@string/preferenceExportBDDTitle"
+        android:summary="@string/preferenceExportBDDSummary"
+        android:key="exportBDD" />
+    <Preference
+        android:title="@string/preferenceImportBDDTitle"
+        android:summary="@string/preferenceImportBDDSummary"
+        android:key="importBDD" />
+    <Preference
+        android:title="@string/preferenceViderBDDTitle"
+        android:summary="@string/preferenceViderBDDSummary"
+        android:key="viderBDD" />
+    <Preference
+        android:title="@string/preferenceReinitGDLTitle"
+        android:summary="@string/preferenceReinitGDLSummary"
+        android:key="reinitGDL" />
+</PreferenceScreen>

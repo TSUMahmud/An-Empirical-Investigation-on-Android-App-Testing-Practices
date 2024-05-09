@@ -1,0 +1,10 @@
+link_download: null # Not public link
+prefixIdExterne: Tfl
+default_value:
+    exploitant: Transport for London
+    dossierId: London
+lignes: True
+lignesType: "Metro"
+ignore_values:
+substitue:
+typeFile: kml

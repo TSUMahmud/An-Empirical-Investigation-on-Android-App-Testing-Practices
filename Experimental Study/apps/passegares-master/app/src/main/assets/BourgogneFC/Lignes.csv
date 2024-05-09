@@ -1,0 +1,6 @@
+idExterne;nom;type;ordre;couleur;vCreation;vMaj;vSuppression
+SNCF_BourgogneFC_U;TER Bourgogne Franche-Comté;Train;7916000;#333333;106;130;0
+Ligne_DIVIAT1-139;T1 de Dijon;Tramway;7413010;#CC008E;129;130;0
+Ligne_DIVIAT2-139;T2 de Dijon;Tramway;7413020;#CC008E;129;130;0
+Ligne_GINKO101;T1 de Besançon;Tramway;7213010;#00A5C2;129;130;0
+Ligne_GINKO102;T2 de Besançon;Tramway;7213020;#006D78;129;130;0

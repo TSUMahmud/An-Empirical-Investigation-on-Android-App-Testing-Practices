@@ -1,0 +1,9 @@
+Piwigo-Android 1.0 est enfin là, et il a beaucoup de nouvelles fonctionnalités :
+
+- Ajout de la possibilité d’afficher des photos en plein écran
+- Design retravaillé
+- Possibilité de créer des albums
+- Simplification de l’usage du formulaire de connexion, et correction de crashes
+- Correction de bugs majeurs et mineurs
+
+Nous apprécions vraiment vos retours sur notre travail. N'hésitez pas à noter et à laisser votre avis pour nous aider à améliorer!

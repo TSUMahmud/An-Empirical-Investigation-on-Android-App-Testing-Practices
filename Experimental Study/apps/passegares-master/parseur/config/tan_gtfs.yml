@@ -1,0 +1,12 @@
+link_download: https://data.nantesmetropole.fr/api/datasets/1.0/244400404_tan-arrets-horaires-circuits/alternative_exports/gtfs_tan_zip
+prefixIdExterne: TAN
+default_value:
+    exploitant: TAN
+    dossierId: PaysLoire
+lignes: True
+ignore_values:
+substitue:
+    idExterne:
+        TANStopArea:GSNO: SNCF01634
+        TANStopArea:GPRO: SNCF01633
+typeFile: gtfs

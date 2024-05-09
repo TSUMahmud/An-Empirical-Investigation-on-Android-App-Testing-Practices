@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IntervalSeekBarPreference.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe.preference</a> &gt; <span class="el_source">IntervalSeekBarPreference.java</span></div><h1>IntervalSeekBarPreference.java</h1><pre class="source lang-java linenums">// IntervalSeekbarPreference.java --- A preference to let the user
+// choose from a set of predetermined intervals using a Seekbar.
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+package com.jmstudios.chibe.preference;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.preference.Preference;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.ImageView;
+
+import com.jmstudios.chibe.state.SettingsModel;
+
+import com.jmstudios.chibe.R;
+
+public class IntervalSeekBarPreference extends Preference {
+    private static final String TAG = &quot;IntervalSeekBarPreference&quot;;
+    private static final boolean DEBUG = false;
+    public static final int DEFAULT_VALUE = 30;
+
+    public SeekBar mIntervalSeekBar;
+    private SettingsModel settingsModel;
+    private TextView mProgressView;
+    private ImageView mIconView;
+    private int mProgress;
+    private View mView;
+    private Context mContext;
+
+    public IntervalSeekBarPreference(Context context,
+                                     AttributeSet attrs) {
+<span class="nc" id="L50">        super(context, attrs);</span>
+
+<span class="nc" id="L52">        mContext = context;</span>
+<span class="nc" id="L53">        setLayoutResource(R.layout.preference_interval_seekbar);</span>
+
+<span class="nc" id="L55">        settingsModel = new SettingsModel(context);</span>
+<span class="nc" id="L56">    }</span>
+
+    public void setProgress(int progress) {
+<span class="nc" id="L59">        mProgress = progress;</span>
+<span class="nc" id="L60">        persistInt(mProgress);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if (mIntervalSeekBar != null)</span>
+<span class="nc" id="L62">            mIntervalSeekBar.setProgress(mProgress);</span>
+<span class="nc" id="L63">    }</span>
+
+    @Override
+    protected Object onGetDefaultValue(TypedArray a, int index) {
+<span class="nc" id="L67">        return a.getInteger(index, DEFAULT_VALUE);</span>
+    }
+
+    @Override
+    protected void onSetInitialValue(boolean restorePersistedValue,
+                                     Object defaultValue) {
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (restorePersistedValue) {</span>
+<span class="nc" id="L74">            mProgress = getPersistedInt(DEFAULT_VALUE);</span>
+        } else {
+<span class="nc" id="L76">            mProgress = (Integer) defaultValue;</span>
+<span class="nc" id="L77">            persistInt(mProgress);</span>
+        }
+<span class="nc" id="L79">    }</span>
+
+    @Override
+    protected void onBindView(View view) {
+<span class="nc" id="L83">        super.onBindView(view);</span>
+<span class="nc" id="L84">        mView = view;</span>
+
+<span class="nc" id="L86">        mProgressView = (TextView) view.findViewById(R.id.progress_text);</span>
+<span class="nc" id="L87">        mIconView = (ImageView) view.findViewById(R.id.interval_icon);</span>
+
+<span class="nc" id="L89">        mIntervalSeekBar = (SeekBar) view.findViewById(R.id.interval_seekbar);</span>
+<span class="nc" id="L90">        mIntervalSeekBar.setMax(7);</span>
+
+<span class="nc" id="L92">        mIntervalSeekBar.setOnSeekBarChangeListener</span>
+<span class="nc" id="L93">            (new SeekBar.OnSeekBarChangeListener() {</span>
+                    @Override
+                    public void onProgressChanged
+                        (SeekBar seekBar, int progress, boolean fromUser) {
+<span class="nc" id="L97">                        mProgress = getInterval(progress);</span>
+<span class="nc" id="L98">                        persistInt(mProgress);</span>
+
+<span class="nc" id="L100">                        updateView();</span>
+<span class="nc" id="L101">                    }</span>
+
+                    @Override
+<span class="nc" id="L104">                    public void onStartTrackingTouch(SeekBar seekBar) {}</span>
+
+                    @Override
+<span class="nc" id="L107">                    public void onStopTrackingTouch(SeekBar seekBar) {}</span>
+                });
+<span class="nc" id="L109">        mIntervalSeekBar.setProgress(getProgress(mProgress));</span>
+
+<span class="nc" id="L111">        updateView();</span>
+<span class="nc" id="L112">    }</span>
+
+    public int getInterval(int progress) {
+<span class="nc bnc" id="L115" title="All 8 branches missed.">        switch (progress) {</span>
+<span class="nc" id="L116">        case 0: return 1;</span>
+<span class="nc" id="L117">        case 1: return 5;</span>
+<span class="nc" id="L118">        case 2: return 10;</span>
+<span class="nc" id="L119">        case 3: return 15;</span>
+<span class="nc" id="L120">        case 4: return 20;</span>
+        default:
+<span class="nc" id="L122">        case 5: return 30;</span>
+<span class="nc" id="L123">        case 6: return 60;</span>
+<span class="nc" id="L124">        case 7: return 120;</span>
+        }
+    }
+
+    public void updateView() {
+<span class="nc" id="L129">        mProgressView.setText(getIntervalText());</span>
+<span class="nc" id="L130">        mIconView.setImageResource(getDrawable(mProgress));</span>
+
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        if (!settingsModel.isDarkTheme())</span>
+<span class="nc" id="L133">            mIconView.setColorFilter(0xDE000000);</span>
+<span class="nc" id="L134">    }</span>
+
+    public int getProgress(int interval) {
+<span class="nc bnc" id="L137" title="All 8 branches missed.">        switch (interval) {</span>
+<span class="nc" id="L138">        case 1: return 0;</span>
+<span class="nc" id="L139">        case 5: return 1;</span>
+<span class="nc" id="L140">        case 10: return 2;</span>
+<span class="nc" id="L141">        case 15: return 3;</span>
+<span class="nc" id="L142">        case 20: return 4;</span>
+        default:
+<span class="nc" id="L144">        case 30: return 5;</span>
+<span class="nc" id="L145">        case 60: return 6;</span>
+<span class="nc" id="L146">        case 120: return 7;</span>
+        }
+    }
+
+    public int getDrawable(int interval) {
+<span class="nc bnc" id="L151" title="All 8 branches missed.">        switch (interval) {</span>
+<span class="nc" id="L152">        case 1: return R.drawable.interval_icon_1;</span>
+<span class="nc" id="L153">        case 5: return R.drawable.interval_icon_5;</span>
+<span class="nc" id="L154">        case 10: return R.drawable.interval_icon_10;</span>
+<span class="nc" id="L155">        case 15: return R.drawable.interval_icon_15;</span>
+<span class="nc" id="L156">        case 20: return R.drawable.interval_icon_20;</span>
+        default:
+<span class="nc" id="L158">        case 30: return R.drawable.interval_icon_30;</span>
+<span class="nc" id="L159">        case 60: return R.drawable.interval_icon_60;</span>
+<span class="nc" id="L160">        case 120: return R.drawable.interval_icon_120;</span>
+        }
+    }
+
+    public String getIntervalText() {
+<span class="nc bnc" id="L165" title="All 8 branches missed.">        switch (mProgress) {</span>
+<span class="nc" id="L166">        case 1: return mContext.getResources()</span>
+<span class="nc" id="L167">                .getString(R.string.vibration_time_entries_0);</span>
+<span class="nc" id="L168">        case 5: return mContext.getResources()</span>
+<span class="nc" id="L169">                .getString(R.string.vibration_time_entries_1);</span>
+<span class="nc" id="L170">        case 10: return mContext.getResources()</span>
+<span class="nc" id="L171">                .getString(R.string.vibration_time_entries_2);</span>
+<span class="nc" id="L172">        case 15: return mContext.getResources()</span>
+<span class="nc" id="L173">                .getString(R.string.vibration_time_entries_3);</span>
+<span class="nc" id="L174">        case 20: return mContext.getResources()</span>
+<span class="nc" id="L175">                .getString(R.string.vibration_time_entries_4);</span>
+        default:
+<span class="nc" id="L177">        case 30: return mContext.getResources()</span>
+<span class="nc" id="L178">                .getString(R.string.vibration_time_entries_5);</span>
+<span class="nc" id="L179">        case 60: return mContext.getResources()</span>
+<span class="nc" id="L180">                .getString(R.string.vibration_time_entries_6);</span>
+<span class="nc" id="L181">        case 120: return mContext.getResources()</span>
+<span class="nc" id="L182">                .getString(R.string.vibration_time_entries_7);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -1,0 +1,129 @@
+// Manifest version information!
+def versionMajor = 1
+def versionMinor = 6
+def versionPatch = 2
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+apply plugin: 'jacoco'
+jacoco {
+    toolVersion = "0.8.4"
+}
+
+buildscript {
+  dependencies {
+    classpath 'com.android.tools.build:gradle:3.0.0-beta5'
+  }
+}
+
+def getBugsnagKey() {
+  return hasProperty('TELECINE_BUGSNAG_KEY') ? TELECINE_BUGSNAG_KEY : ''
+}
+def getAnalyticsKey() {
+  return hasProperty('TELECINE_ANALYTICS_KEY') ? TELECINE_ANALYTICS_KEY : ''
+}
+
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion 26
+  buildToolsVersion '26.0.1'
+
+  defaultConfig {
+    applicationId 'com.jakewharton.telecine'
+
+    minSdkVersion 21
+    targetSdkVersion 22
+
+    versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
+    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
+    buildConfigField "String", "BUGSNAG_KEY", "\"${getBugsnagKey()}\""
+    buildConfigField "String", "ANALYTICS_KEY", "\"${getAnalyticsKey()}\""
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+
+  lintOptions {
+    textReport true
+    textOutput 'stdout'
+
+    // We run a full lint analysis as build part in CI, so skip vital checks for assemble tasks.
+    checkReleaseBuilds false
+
+    warning 'MissingTranslation'
+    error 'UnusedResources'
+    error 'CheckResult'
+  }
+
+  dexOptions {
+    preDexLibraries = Boolean.valueOf(System.getProperty("pre-dex", "true"))
+  }
+
+  signingConfigs {
+    debug {
+      storeFile rootProject.file('debug.keystore')
+      storePassword 'android'
+      keyAlias 'android'
+      keyPassword 'android'
+    }
+  }
+
+  buildTypes {
+    debug {
+      applicationIdSuffix '.debug'
+      signingConfig signingConfigs.debug
+      testCoverageEnabled true
+    }
+  }
+  lintOptions {
+      abortOnError false
+  }
+
+  testOptions {
+      unitTests {
+          includeAndroidResources = true
+      }
+  }
+}
+
+dependencies {
+  implementation 'com.android.support:support-annotations:26.0.0'
+  implementation 'com.android.support:design:26.0.0'
+  implementation 'com.google.android.gms:play-services-analytics:10.0.1'
+  implementation 'com.nightlynexus.demomode:demomode:0.1.2'
+  implementation 'com.jakewharton:butterknife:8.4.0'
+  annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+  implementation 'com.jakewharton.timber:timber:4.3.1'
+  implementation 'com.bugsnag:bugsnag-android:3.7.0'
+  implementation 'com.google.dagger:dagger:2.11'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+  implementation 'com.google.dagger:dagger-android:2.11'
+  annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'com.google.truth:truth:0.30'
+  testImplementation 'org.robolectric:robolectric:3.5.1'
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+task jacocoUnitTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+
+    reports {
+        xml.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories.from = files([mainSrc])
+    classDirectories.from = files([debugTree])
+    executionData.from = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec'
+    ])
+}

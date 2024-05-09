@@ -1,0 +1,137 @@
+apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
+jacoco {
+    toolVersion = "0.8.4"
+}
+
+dependencies {
+    implementation 'com.github.openintents:distribution:3.0.2'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.23.0'
+    testImplementation 'com.google.truth:truth:0.30'
+    testImplementation 'org.robolectric:robolectric:3.5.1'
+}
+
+android {
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
+
+    defaultConfig {
+        applicationId "org.openintents.filemanager"
+        versionCode version_code
+        versionName version_name
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jni.srcDirs = ['jni']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        androidTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = outputFile.name.replace('.apk', "-${versionName}.apk")
+                        output.outputFileName = new File(output.outputFile.parent, fileName).getName()
+                    }
+                }
+            }
+        }
+
+	debug {
+            testCoverageEnabled true
+	}
+    }
+
+    testOptions {
+      unitTests {
+          includeAndroidResources = true
+      }
+    }
+
+    def propertyFile = new File(projectDir, "build-private.properties")
+    if (propertyFile && propertyFile.exists()) {
+        signingConfigs {
+            release {
+                Properties props = new Properties()
+                props.load(new FileInputStream(propertyFile))
+
+                storeFile file(props.getProperty("key.store"))
+                storePassword props.getProperty("key.store.password")
+                keyAlias props.getProperty("key.alias")
+                keyPassword props.getProperty("key.alias.password")
+            }
+        }
+        buildTypes.release.signingConfig signingConfigs.release
+        println "Release apks will be signed!"
+    } else {
+        println "For signed release apks you need to create a build-private.properties file"
+    }
+
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+task jacocoUnitTestReport(type: JacocoReport, dependsOn: ['testDevDebugUnitTest']) {
+
+    reports {
+        xml.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/devDebug/classes", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories.from = files([mainSrc])
+    classDirectories.from = files([debugTree])
+    executionData.from = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDevDebugUnitTest.exec'
+    ])
+}
+
+

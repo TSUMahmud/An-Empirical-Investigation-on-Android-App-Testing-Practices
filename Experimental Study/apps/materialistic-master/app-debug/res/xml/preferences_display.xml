@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <io.github.hidroh.materialistic.preference.ThemePreference android:title="@string/pref_theme_title" android:key="@string/pref_theme" android:defaultValue="light" />
+    <androidx.preference.SwitchPreferenceCompat android:title="@string/pref_daynight_title" android:key="@string/pref_daynight_auto" android:dependency="@string/pref_theme" android:defaultValue="false" app:iconSpaceReserved="false" />
+    <io.github.hidroh.materialistic.preference.FontSizePreference android:title="@string/pref_text_size_title" android:key="@string/pref_text_size" android:defaultValue="0" app:entries="@array/text_size_options" app:entryValues="@array/pref_text_size_values" />
+    <io.github.hidroh.materialistic.preference.FontPreference android:title="@string/pref_font_title" android:key="@string/pref_font" android:defaultValue="" app:entries="@array/font_options" app:entryValues="@array/font_values" />
+    <io.github.hidroh.materialistic.preference.SimpleSpinnerPreference android:title="@string/pref_launch_screen_title" android:key="@string/pref_launch_screen" android:defaultValue="top" app:entries="@array/pref_launch_screen_options" app:entryValues="@array/pref_launch_screen_values" />
+    <androidx.preference.SwitchPreferenceCompat android:title="@string/pref_external_title" android:key="@string/pref_external" android:summary="@string/pref_external_summary" android:defaultValue="false" android:disableDependentsState="true" app:iconSpaceReserved="false" />
+    <androidx.preference.SwitchPreferenceCompat android:title="@string/pref_ad_block_title" android:key="@string/pref_ad_block" android:summary="@string/pref_ad_block_summary" android:dependency="@string/pref_external" android:defaultValue="true" app:iconSpaceReserved="false" />
+    <androidx.preference.SwitchPreferenceCompat android:title="@string/pref_custom_tab_title" android:key="@string/pref_custom_tab" android:summary="@string/pref_custom_tab_summary" android:defaultValue="true" app:iconSpaceReserved="false" />
+    <androidx.preference.SwitchPreferenceCompat android:title="@string/pref_lazy_load_title" android:key="@string/pref_lazy_load" android:summary="@string/pref_lazy_load_summary" android:defaultValue="true" app:iconSpaceReserved="false" />
+    <io.github.hidroh.materialistic.preference.PreferenceHelp android:title="@string/whats_this" android:key="@string/pref_lazy_load_help" app:dialogLayout="@layout/help_lazy_load" app:dialogTitle="@string/pref_lazy_load_title" />
+    <androidx.preference.SwitchPreferenceCompat android:title="@string/pref_volume_title" android:key="@string/pref_volume" android:summary="@string/pref_volume_summary" android:defaultValue="false" app:iconSpaceReserved="false" />
+    <io.github.hidroh.materialistic.preference.PreferenceHelp android:title="@string/whats_this" android:key="@string/pref_volume_help" app:dialogLayout="@layout/help_volume" app:dialogTitle="@string/pref_volume_title" />
+</androidx.preference.PreferenceScreen>

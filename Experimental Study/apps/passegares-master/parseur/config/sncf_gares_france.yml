@@ -1,0 +1,77 @@
+link_download:  https://ressources.data.sncf.com/explore/dataset/referentiel-gares-voyageurs/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true
+header:
+    Code gare: idExterne
+    Intitulé gare: nom
+    Longitude WGS84: longitude
+    Latitude WGS84: latitude
+    Région: dossierId
+prefixIdExterne: SNCF
+lignes: False
+lignesType: Trains
+default_value:
+    exploitant: SNCF
+ignore_values:
+    dossierId:
+        - Île-de-France
+substitue:
+    dossierId:
+        Grand Est: GrandEst
+        Hauts-de-France: HautsFrance
+        Auvergne-Rhône-Alpes: AuvergneRA
+        Nouvelle-Aquitaine: NAquitaine
+        Bourgogne-Franche-Comté: BourgogneFC
+        Centre-Val de Loire: CentreVdL
+        Provence-Alpes-Côte d'Azur: PACA
+        Pays de la Loire: PaysLoire
+    idExterne:
+        SNCF02478: 411332
+        SNCF02507: 411428
+        SNCF03020: 411378
+        SNCF02082: 411345
+        SNCF03021: 411381
+        SNCF02516: 411440
+        SNCF02534: 411396
+        SNCF00759: 58955
+        SNCF01962: 411492
+        SNCF00758: 411488
+        SNCF02080: 59301
+        SNCF02491: 411418
+        SNCF03015: 411372
+        SNCF02084: 411348
+        SNCF02537: 411405
+        SNCF02083: 411342
+        SNCF00754: 411485
+        SNCF01963: 411495
+        SNCF03016: 411375
+        SNCF00765: 411482
+        SNCF02536: 411390
+        SNCF03022: 411384
+        SNCF02535: 411387
+        SNCF02492: 411421
+        SNCF02480: 411326
+        SNCF02481: 411329
+        SNCF02081: 411338
+        SNCF01446: 59049
+        SNCF02283: 411317
+        SNCF01443: 411446
+        SNCF02005: 411362
+        SNCF00789: 411461
+        SNCF01939: 411507
+        SNCF01442: 411443
+        SNCF01937: 411511
+        SNCF00787: 411455
+        SNCF02006: 411365
+        SNCF00784: 411467
+        SNCF01934: 411498
+        SNCF01933: 411504
+        SNCF00783: 411479
+        SNCF03040: 47914
+        SNCF01936: 59302
+        SNCF00788: 411458
+        SNCF00785: 411473
+        SNCF01935: 411501
+        SNCF00791: 411452
+        SNCF00790: 411464
+        SNCF00786: 411476
+        SNCF01444: 411449
+typeFile: csv

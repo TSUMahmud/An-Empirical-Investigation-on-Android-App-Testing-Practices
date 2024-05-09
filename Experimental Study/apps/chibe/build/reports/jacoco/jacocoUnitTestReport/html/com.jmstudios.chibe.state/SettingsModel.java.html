@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SettingsModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe.state</a> &gt; <span class="el_source">SettingsModel.java</span></div><h1>SettingsModel.java</h1><pre class="source lang-java linenums">// SettingsModel.java --- Helper class to manage the SharedPreferences
+// of Chibe
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+package com.jmstudios.chibe.state;
+
+import android.content.SharedPreferences;
+import android.content.Context;
+import android.preference.PreferenceManager;
+
+public class SettingsModel {
+    private static final String TAG = &quot;SettingsModel&quot;;
+    private static final boolean DEBUG = true;
+
+    public static final String mSleepStartPrefKey = &quot;pref_key_sleep_start&quot;;
+    public static final String mSleepEndPrefKey = &quot;pref_key_sleep_end&quot;;
+    public static final String mVibrationTimePrefKey = &quot;pref_key_vibration_time&quot;;
+    public static final String mVibrationServiceOnPrefKey = &quot;pref_key_vibration_service_on&quot;;
+    public static final String mIntroShownPrefKey = &quot;pref_key_intro_shown&quot;;
+    public static final String mVibrationPatternPrefKey = &quot;pref_key_vibration_pattern&quot;;
+    public static final String mCustomVibrationPatternPrefKey = &quot;pref_key_custom_vibration_pattern&quot;;
+    public static final String mHourRepeatPrefKey = &quot;pref_key_hour_repeat&quot;;
+    public static final String mHourVibrationPatternPrefKey = &quot;pref_key_hour_vibration_pattern&quot;;
+    public static final String mCustomHourVibrationPatternPrefKey = &quot;pref_key_custom_hour_vibration_pattern&quot;;
+    public static final String mDarkThemePrefKey = &quot;pref_key_dark_theme&quot;;
+    public static final String mVibrateDuringDndPrefKey = &quot;pref_key_vibrate_during_dnd&quot;;
+    public static final String mVibrateDuringCallsPrefKey = &quot;pref_key_vibrate_during_calls&quot;;
+
+    private SharedPreferences mSharedPrefs;
+
+<span class="nc" id="L46">    public SettingsModel(SharedPreferences sharedPreferences) {</span>
+<span class="nc" id="L47">        mSharedPrefs = sharedPreferences;</span>
+<span class="nc" id="L48">    }</span>
+
+    // Creates a new SettingsModel using the default SharedPreferences
+    // for the given context.
+    public SettingsModel(Context context) {
+<span class="nc" id="L53">        this(PreferenceManager.getDefaultSharedPreferences(context));</span>
+<span class="nc" id="L54">    }</span>
+
+    public SharedPreferences getSharedPreferences() {
+<span class="nc" id="L57">        return mSharedPrefs;</span>
+    }
+
+    public String getSleepStart() {
+<span class="nc" id="L61">        return mSharedPrefs.getString(mSleepStartPrefKey, &quot;22:00&quot;);</span>
+    }
+
+    public String getSleepEnd() {
+<span class="nc" id="L65">        return mSharedPrefs.getString(mSleepEndPrefKey, &quot;09:00&quot;);</span>
+    }
+
+    public int getVibrationTimeInMinutes() {
+<span class="nc" id="L69">        return mSharedPrefs.getInt(mVibrationTimePrefKey, 30);</span>
+    }
+
+    public boolean isVibrationServiceOn() {
+<span class="nc" id="L73">        return mSharedPrefs.getBoolean</span>
+<span class="nc" id="L74">            (mVibrationServiceOnPrefKey, false);</span>
+    }
+
+    public void setVibrationServiceOn(boolean serviceOn) {
+<span class="nc" id="L78">        mSharedPrefs.edit()</span>
+<span class="nc" id="L79">            .putBoolean(mVibrationServiceOnPrefKey, serviceOn).commit();</span>
+<span class="nc" id="L80">    }</span>
+
+    public boolean shouldVibrateDuringDnd() {
+<span class="nc" id="L83">        return mSharedPrefs.getBoolean</span>
+<span class="nc" id="L84">            (mVibrateDuringDndPrefKey, true);</span>
+    }
+
+    public boolean shouldVibrateDuringCalls() {
+<span class="nc" id="L88">        return mSharedPrefs.getBoolean</span>
+<span class="nc" id="L89">            (mVibrateDuringCallsPrefKey, true);</span>
+    }
+
+    public boolean isIntroShown() {
+<span class="nc" id="L93">        return mSharedPrefs.getBoolean(mIntroShownPrefKey, false);</span>
+    }
+
+    public void setIntroShown(boolean introShown) {
+<span class="nc" id="L97">        mSharedPrefs.edit()</span>
+<span class="nc" id="L98">            .putBoolean(mIntroShownPrefKey, introShown).commit();</span>
+<span class="nc" id="L99">    }</span>
+
+    public String getVibrationPattern() {
+<span class="nc" id="L102">        String chosenPattern =</span>
+<span class="nc" id="L103">            mSharedPrefs.getString(mVibrationPatternPrefKey, &quot;.._..&quot;);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (chosenPattern.equals(&quot;custom&quot;)) {</span>
+<span class="nc" id="L105">            return getCustomVibrationPattern();</span>
+        } else {
+<span class="nc" id="L107">            return chosenPattern;</span>
+        }
+    }
+
+    public String getCustomVibrationPattern() {
+<span class="nc" id="L112">        return mSharedPrefs.</span>
+<span class="nc" id="L113">            getString(mCustomVibrationPatternPrefKey, &quot;&quot;);</span>
+    }
+
+    public void setCustomVibrationPattern(String vibrationPattern) {
+<span class="nc" id="L117">        mSharedPrefs.edit()</span>
+<span class="nc" id="L118">            .putString(mCustomVibrationPatternPrefKey, vibrationPattern).commit();</span>
+<span class="nc" id="L119">    }</span>
+
+    public boolean isHourRepeatEnabled() {
+<span class="nc" id="L122">        return mSharedPrefs.getBoolean(mHourRepeatPrefKey, false);</span>
+    }
+
+    public String getHourVibrationPattern() {
+<span class="nc" id="L126">        String chosenPattern =</span>
+<span class="nc" id="L127">            mSharedPrefs.getString(mHourVibrationPatternPrefKey, &quot;.._..&quot;);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        if (chosenPattern.equals(&quot;custom&quot;)) {</span>
+<span class="nc" id="L129">            return getCustomHourVibrationPattern();</span>
+        } else {
+<span class="nc" id="L131">            return chosenPattern;</span>
+        }
+    }
+
+    public String getCustomHourVibrationPattern() {
+<span class="nc" id="L136">        return mSharedPrefs.</span>
+<span class="nc" id="L137">            getString(mCustomHourVibrationPatternPrefKey, &quot;&quot;);</span>
+    }
+
+    public void setCustomHourVibrationPattern(String vibrationPattern) {
+<span class="nc" id="L141">        mSharedPrefs.edit()</span>
+<span class="nc" id="L142">            .putString(mCustomHourVibrationPatternPrefKey, vibrationPattern).commit();</span>
+<span class="nc" id="L143">    }</span>
+
+    public boolean isDarkTheme() {
+<span class="nc" id="L146">        return mSharedPrefs.getBoolean(mDarkThemePrefKey, false);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

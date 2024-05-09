@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/ic_format_size_white_24dp" android:id="@id/menu_font_options" android:title="@string/font_options" app:showAsAction="always" />
+    <item android:icon="@drawable/ic_chrome_reader_mode_black_24dp" android:id="@id/menu_readability" android:title="@string/readability" app:showAsAction="always" />
+</menu>

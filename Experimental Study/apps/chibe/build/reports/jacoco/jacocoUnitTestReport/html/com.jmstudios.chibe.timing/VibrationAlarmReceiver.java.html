@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VibrationAlarmReceiver.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe.timing</a> &gt; <span class="el_source">VibrationAlarmReceiver.java</span></div><h1>VibrationAlarmReceiver.java</h1><pre class="source lang-java linenums">// VibrationAlarmReceiver.java --- Receives alarms from the Android alarm
+// manager to vibrate when needed
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+package com.jmstudios.chibe.timing;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.os.Vibrator;
+import android.app.NotificationManager;
+import android.annotation.TargetApi;
+import android.telephony.TelephonyManager;
+
+import com.jmstudios.chibe.state.SettingsModel;
+
+<span class="nc" id="L33">public class VibrationAlarmReceiver extends BroadcastReceiver {</span>
+    private final static String TAG = &quot;VibrationAlarmReceiver&quot;;
+    private final static boolean DEBUG = true;
+
+    public final static String HOUR_REPEAT_COUNT_EXTRA
+        = &quot;com.jmstudios.chibe.timing.hour_repeat_count&quot;;
+
+    private final static int SHORT_BUZZ = 100,
+        LONG_BUZZ = 400,
+        SHORT_PAUSE = 50,
+        LONG_PAUSE = 200,
+        PATTERN_PAUSE = 800;
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (DEBUG) {
+<span class="nc" id="L49">            Log.i(TAG, &quot;Vibration alarm received&quot;);</span>
+<span class="nc" id="L50">            Log.i(TAG, String.format</span>
+<span class="nc" id="L51">                  (&quot;Ammount (-1 is no extra): %d | Repeat enabled: %b&quot;,</span>
+<span class="nc" id="L52">                   intent.getIntExtra(HOUR_REPEAT_COUNT_EXTRA, -1),</span>
+<span class="nc" id="L53">                   (new SettingsModel(context)).isHourRepeatEnabled()));</span>
+        }
+
+<span class="nc" id="L56">        SettingsModel settingsModel = new SettingsModel(context);</span>
+
+<span class="nc" id="L58">        int ammHourPattern =</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            settingsModel.isHourRepeatEnabled() ?</span>
+<span class="nc" id="L60">            intent.getIntExtra(HOUR_REPEAT_COUNT_EXTRA, 0) : 0;</span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (shouldVibrate(settingsModel, context)) {</span>
+<span class="nc" id="L63">            vibrate(context, 1, ammHourPattern);</span>
+        }
+
+        // Schedule new alarm
+<span class="nc" id="L67">        VibrationAlarmScheduler.rescheduleAlarm(context);</span>
+<span class="nc" id="L68">    }</span>
+
+    private boolean shouldVibrate(SettingsModel settingsModel,
+                                  Context context) {
+<span class="nc" id="L72">        boolean vibrate = true;</span>
+
+<span class="nc bnc" id="L74" title="All 4 branches missed.">        if ( (!settingsModel.shouldVibrateDuringDnd() &amp;&amp; isDndEnabled(context)) ||</span>
+<span class="nc bnc" id="L75" title="All 4 branches missed.">             (!settingsModel.shouldVibrateDuringCalls() &amp;&amp; isCallActive(context))){</span>
+<span class="nc" id="L76">            vibrate = false;</span>
+        }
+
+<span class="nc" id="L79">        return vibrate;</span>
+    }
+
+    @TargetApi(23)
+    private boolean isDndEnabled(Context context) {
+<span class="nc" id="L84">        boolean dndIsEnabled = false;</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        boolean dndIsSupported = android.os.Build.VERSION.SDK_INT &gt;= 23;</span>
+
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if(dndIsSupported){</span>
+<span class="nc" id="L88">            NotificationManager notificationManager = (NotificationManager)</span>
+<span class="nc" id="L89">                context.getSystemService(Context.NOTIFICATION_SERVICE);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (notificationManager == null) return false;</span>
+
+<span class="nc" id="L92">            int currentFilter =</span>
+<span class="nc" id="L93">                notificationManager.getCurrentInterruptionFilter();</span>
+
+            // All other values indicate an active Dnd filter. See:
+            // https://developer.android.com/reference/android/app/NotificationManager.html#INTERRUPTION_FILTER_ALARMS
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            dndIsEnabled = currentFilter !=</span>
+                NotificationManager.INTERRUPTION_FILTER_ALL &amp;&amp;
+                currentFilter !=
+                NotificationManager.INTERRUPTION_FILTER_UNKNOWN;
+
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (DEBUG) Log.i(TAG, &quot;Dnd is &quot; +</span>
+                             (dndIsEnabled ? &quot;enabled&quot; : &quot;disabled&quot;));
+<span class="nc" id="L104">            if (DEBUG) Log.i(TAG, String.format</span>
+<span class="nc" id="L105">                             (&quot;Filter number is %d.&quot;, currentFilter));</span>
+        }
+
+<span class="nc" id="L108">        return dndIsEnabled;</span>
+    }
+
+    private boolean isCallActive(Context context){
+<span class="nc" id="L112">        boolean activeCall = true;</span>
+<span class="nc" id="L113">        TelephonyManager telephonyManager = (TelephonyManager)</span>
+<span class="nc" id="L114">            context.getSystemService(Context.TELEPHONY_SERVICE);</span>
+
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        if(telephonyManager.getCallState() == telephonyManager.CALL_STATE_IDLE){</span>
+<span class="nc" id="L117">            activeCall = false;</span>
+        }
+
+<span class="nc" id="L120">        return activeCall;</span>
+    }
+
+    // Vibrates the normal pattern `ammNormalPattern` times and the
+    // hour pattern `ammHourPattern` times.
+    public static void vibrate
+        (Context context, int ammNormalPattern, int ammHourPattern) {
+<span class="nc" id="L127">        Vibrator vibrator = (Vibrator) context.</span>
+<span class="nc" id="L128">            getSystemService(Context.VIBRATOR_SERVICE);</span>
+
+<span class="nc" id="L130">        long[] vibrationPattern = getVibrationPattern</span>
+<span class="nc" id="L131">            (context, ammNormalPattern, ammHourPattern);</span>
+
+<span class="nc" id="L133">        int noRepeat = -1;</span>
+<span class="nc" id="L134">        vibrator.vibrate(vibrationPattern, noRepeat);</span>
+<span class="nc" id="L135">    }</span>
+
+    private static long[] getVibrationPattern
+        (Context context, int ammNormalPattern, int ammHourPattern) {
+<span class="nc" id="L139">        SettingsModel settingsModel = new SettingsModel(context);</span>
+
+<span class="nc" id="L141">        String normal = settingsModel.getVibrationPattern(),</span>
+<span class="nc" id="L142">            hour = settingsModel.getHourVibrationPattern();</span>
+
+<span class="nc" id="L144">        long[] normalPattern = getPatternFromString(normal),</span>
+<span class="nc" id="L145">            hourPattern = getPatternFromString(hour);</span>
+
+<span class="nc" id="L147">        long[] vibrationPattern = new long</span>
+<span class="nc" id="L148">            [2 * (ammNormalPattern * normal.length()</span>
+<span class="nc" id="L149">                  + ammHourPattern * hour.length()</span>
+                  // For the pauses between the patterns
+                  + ammNormalPattern + ammHourPattern)];
+
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        for (int i = 0; i &lt; ammNormalPattern; i++) {</span>
+<span class="nc" id="L154">            int base = 2 * i * normal.length() + 2 * i;</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            for (int j = 0; j &lt; 2 * normal.length(); j++)</span>
+<span class="nc" id="L156">                vibrationPattern[base + j] = normalPattern[j];</span>
+
+            // Add a pause between the patterns
+<span class="nc" id="L159">            vibrationPattern[base + 2 * normal.length() + 0]</span>
+                = PATTERN_PAUSE;
+<span class="nc" id="L161">            vibrationPattern[base + 2 * normal.length() + 1]= 0;</span>
+        }
+
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        for (int i = 0; i &lt; ammHourPattern; i++) {</span>
+<span class="nc" id="L165">            int base = 2 * ammNormalPattern * normal.length() +</span>
+                2 * ammNormalPattern +
+<span class="nc" id="L167">                2 * i * hour.length() + 2 * i;</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            for (int j = 0; j &lt; 2 * hour.length(); j++)</span>
+<span class="nc" id="L169">                vibrationPattern[base + j] = hourPattern[j];</span>
+
+            // Add a pause between the patterns
+<span class="nc" id="L172">            vibrationPattern[base + 2 * hour.length() + 0]</span>
+                = PATTERN_PAUSE;
+<span class="nc" id="L174">            vibrationPattern[base + 2 * hour.length() + 1] = 0;</span>
+        }
+
+<span class="nc" id="L177">        return vibrationPattern;</span>
+    }
+
+    private static long[] getPatternFromString(String pattern) {
+<span class="nc" id="L181">        long[] vibrationPattern = new long[2 * pattern.length()];</span>
+
+<span class="nc" id="L183">        vibrationPattern[0] = 0;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        vibrationPattern[1] = pattern.charAt(0) == '.' ?</span>
+            SHORT_BUZZ : LONG_BUZZ;
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        for (int i = 1; i &lt; pattern.length(); i++) {</span>
+<span class="nc" id="L187">            vibrationPattern[2 * i] =</span>
+<span class="nc bnc" id="L188" title="All 4 branches missed.">                pattern.charAt(i - 1) == '_' || pattern.charAt(i) == '_' ?</span>
+                LONG_PAUSE : SHORT_PAUSE;
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            vibrationPattern[2 * i + 1] = pattern.charAt(i) == '.' ?</span>
+                SHORT_BUZZ : LONG_BUZZ;
+        }
+
+<span class="nc" id="L194">        return vibrationPattern;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

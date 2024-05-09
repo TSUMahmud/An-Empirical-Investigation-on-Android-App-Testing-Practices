@@ -1,0 +1,11 @@
+link_download: http://data.montpellier3m.fr/sites/default/files/ressources/TAM_MMM_GTFS.zip
+prefixIdExterne: TAM
+default_value:
+    exploitant: TAM
+    dossierId: Occitanie
+lignes: True
+ignore_values:
+substitue:
+    idExterne:
+        TAMS5472: SNCF00130
+typeFile: gtfs

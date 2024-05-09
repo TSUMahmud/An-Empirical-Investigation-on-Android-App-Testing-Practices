@@ -1,0 +1,14 @@
+idExterne;nom;type;ordre;couleur;vCreation;vMaj;vSuppression
+Ligne_Tfl_District;District;Metro;13019129;#007A33;133;0;0
+Ligne_Tfl_Piccadilly;Piccadilly;Metro;13019573;#10069F;133;0;0
+Ligne_Tfl_Circle;Circle;Metro;13019092;#FFCD00;133;0;0
+Ligne_Tfl_HammersmithCity;Hammersmith & City;Metro;13019271;#E89CAE;133;0;0
+Ligne_Tfl_Metropolitan;Metropolitan;Metro;13019458;#840B55;133;0;0
+Ligne_Tfl_Northern;Northern;Metro;13019505;#000000;133;0;0
+Ligne_Tfl_Bakerloo;Bakerloo;Metro;13019047;#A45A2A;133;0;0
+Ligne_Tfl_Jubilee;Jubilee;Metro;13019363;#7C878E;133;0;0
+Ligne_Tfl_Central;Central;Metro;13019088;#DA291C;133;0;0
+Ligne_Tfl_WaterlooCity;Waterloo & City;Metro;13019826;#6ECEB2;133;0;0
+Ligne_Tfl_Victoria;Victoria;Metro;13019795;#00A3E0;133;0;0
+Ligne_Tfl_EastLondon;East London;Metro;13029169;#E87722;133;0;0
+Ligne_Tfl_dlr;dlr;Metro;13039132;#00B2A9;133;0;0

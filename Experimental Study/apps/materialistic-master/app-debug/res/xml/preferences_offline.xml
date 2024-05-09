@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.preference.SwitchPreferenceCompat android:title="@string/pref_saved_item_sync_title" android:key="@string/pref_saved_item_sync" android:summary="@string/pref_saved_item_sync_summary" android:defaultValue="false" app:iconSpaceReserved="false" />
+    <androidx.preference.SwitchPreferenceCompat android:title="@string/pref_offline_notification_title" android:key="@string/pref_offline_notification" android:summary="@string/pref_offline_notification_summary" android:dependency="@string/pref_saved_item_sync" android:defaultValue="false" app:iconSpaceReserved="false" />
+    <io.github.hidroh.materialistic.preference.SimpleSpinnerPreference android:title="@string/pref_offline_data_title" android:key="@string/pref_offline_data" android:dependency="@string/pref_saved_item_sync" android:defaultValue="wifi" app:entries="@array/offline_data_options" app:entryValues="@array/offline_data_values" />
+    <androidx.preference.CheckBoxPreference android:title="@string/pref_offline_comments_title" android:key="@string/pref_offline_comments" android:dependency="@string/pref_saved_item_sync" android:defaultValue="true" app:iconSpaceReserved="false" />
+    <androidx.preference.CheckBoxPreference android:title="@string/pref_offline_article_title" android:key="@string/pref_offline_article" android:dependency="@string/pref_saved_item_sync" android:defaultValue="true" app:iconSpaceReserved="false" />
+    <androidx.preference.CheckBoxPreference android:title="@string/pref_offline_readability_title" android:key="@string/pref_offline_readability" android:dependency="@string/pref_saved_item_sync" android:defaultValue="true" app:iconSpaceReserved="false" />
+</androidx.preference.PreferenceScreen>

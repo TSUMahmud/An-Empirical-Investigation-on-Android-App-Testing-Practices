@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.Translucent" parent="@style/AppTheme.Dark.Translucent" />
+    <style name="BaseAppTheme.DayNight" parent="@style/BaseAppTheme.DayNight.NoActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/whiteT50</item>
+        <item name="alertDialogTheme">@style/AppAlertDialog.Dark</item>
+        <item name="backgroundDrawerHeader">@drawable/bg_drawer_dark</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialog.Dark</item>
+        <item name="colorAccent">@color/redA100</item>
+        <item name="colorCardBackground">@color/grey900</item>
+        <item name="colorCardHighlight">@color/grey800</item>
+        <item name="colorPrimary">@color/grey900</item>
+        <item name="colorPrimaryDark">@color/blackT87</item>
+    </style>
+    <style name="Green">
+        <item name="android:textColorPrimary">@color/teal100</item>
+        <item name="android:textColorSecondary">@color/teal50</item>
+        <item name="alertDialogTheme">@style/AppAlertDialog.Dark.Green</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialog.Dark.Green</item>
+    </style>
+    <style name="Sepia">
+        <item name="android:textColorPrimary">@color/orange100</item>
+        <item name="android:textColorSecondary">@color/orange50</item>
+        <item name="alertDialogTheme">@style/AppAlertDialog.Dark.Sepia</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialog.Dark.Sepia</item>
+    </style>
+    <style name="Solarized" parent="@style/BaseDarkSolarized" />
+    <style name="Theme.AppCompat.DayNight" parent="@style/Theme.AppCompat" />
+    <style name="Theme.AppCompat.DayNight.DarkActionBar" parent="@style/Theme.AppCompat" />
+    <style name="Theme.AppCompat.DayNight.Dialog" parent="@style/Theme.AppCompat.Dialog" />
+    <style name="Theme.AppCompat.DayNight.Dialog.Alert" parent="@style/Theme.AppCompat.Dialog.Alert" />
+    <style name="Theme.AppCompat.DayNight.Dialog.MinWidth" parent="@style/Theme.AppCompat.Dialog.MinWidth" />
+    <style name="Theme.AppCompat.DayNight.DialogWhenLarge" parent="@style/Theme.AppCompat.DialogWhenLarge" />
+    <style name="Theme.AppCompat.DayNight.NoActionBar" parent="@style/Theme.AppCompat.NoActionBar" />
+    <style name="AppAlertDialog.Dark.Green" parent="@style/AppAlertDialog.Dark">
+        <item name="android:textColorPrimary">@color/teal100</item>
+        <item name="android:textColorSecondary">@color/teal50</item>
+    </style>
+    <style name="AppAlertDialog.Dark.Sepia" parent="@style/AppAlertDialog.Dark">
+        <item name="android:textColorPrimary">@color/orange100</item>
+        <item name="android:textColorSecondary">@color/orange50</item>
+    </style>
+    <style name="AppBottomSheetDialog.Dark.Green" parent="@style/AppBottomSheetDialog.Dark">
+        <item name="android:textColorPrimary">@color/teal100</item>
+        <item name="android:textColorSecondary">@color/teal50</item>
+    </style>
+    <style name="AppBottomSheetDialog.Dark.Sepia" parent="@style/AppBottomSheetDialog.Dark">
+        <item name="android:textColorPrimary">@color/orange100</item>
+        <item name="android:textColorSecondary">@color/orange50</item>
+    </style>
+</resources>

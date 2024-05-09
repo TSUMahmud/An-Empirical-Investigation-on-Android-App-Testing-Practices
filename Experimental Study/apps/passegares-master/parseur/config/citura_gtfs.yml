@@ -1,0 +1,12 @@
+link_download: https://www.data.gouv.fr/fr/datasets/r/07320881-709f-465c-be37-f54d0b63aa8a
+prefixIdExterne: CITURA
+default_value:
+    exploitant: CITURA
+    dossierId: GrandEst
+lignes: True
+ignore_values:
+substitue:
+    idExterne:
+        CITURAS50: SNCF02905
+        CITURAS54: SNCF02876
+typeFile: gtfs

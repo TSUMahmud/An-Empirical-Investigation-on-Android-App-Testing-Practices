@@ -1,0 +1,15 @@
+link_download: https://data.toulouse-metropole.fr/explore/dataset/tisseo-gtfs/files/bd1298f158bc39ed9065e0c17ebb773b/download/
+prefixIdExterne: TISSEO
+default_value:
+    exploitant: TISSEO
+    dossierId: Occitanie
+lignes: True
+ignore_values:
+substitue:
+    idExterne:
+        TISSEO1970324840530381: SNCF01068
+        TISSEO1970324837184617: SNCF01051
+        TISSEO1970324837184685: SNCF01043
+        TISSEO1970324837184595: SNCF01067
+        TISSEO1970324837184714: SNCF01789
+typeFile: gtfs

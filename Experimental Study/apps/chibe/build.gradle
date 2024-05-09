@@ -1,0 +1,88 @@
+buildscript {
+    repositories {
+        jcenter()
+	mavenCentral()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.1'
+	classpath "org.jacoco:org.jacoco.core:0.8.4"
+    }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "25"
+
+    defaultConfig {
+        applicationId "com.jmstudios.chibe"
+        minSdkVersion 14
+        targetSdkVersion 24
+        versionCode 4
+        versionName "1.2.1"
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    google()
+}
+
+dependencies {
+    // Required -- JUnit 4 framework
+    compile 'junit:junit:4.12'
+
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
+    compile 'com.github.paolorotolo:appintro:4.1.0'
+}
+
+android {
+    lintOptions {
+        // Required for JUnit
+        disable 'InvalidPackage'
+    }
+}
+
+android {
+  defaultConfig {
+    // Stops the Gradle plugin’s automatic rasterization of vectors
+    generatedDensities = []
+  }
+  // Flag to tell aapt to keep the attribute ids around
+  aaptOptions {
+    additionalParameters "--no-version-vectors"
+  }
+}
+
+
+apply plugin: 'jacoco'
+jacoco {
+    toolVersion = "0.8.3"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+task jacocoUnitTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+
+    reports {
+        xml.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories.from = files([mainSrc])
+    classDirectories.from = files([debugTree])
+    executionData.from = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec'
+    ])
+}

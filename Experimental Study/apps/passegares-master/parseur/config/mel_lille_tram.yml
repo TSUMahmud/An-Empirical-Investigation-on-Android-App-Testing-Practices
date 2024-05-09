@@ -1,0 +1,17 @@
+link_download:  https://opendata.lillemetropole.fr/explore/dataset/tramway-arrets/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true
+header:
+    objectid: idExterne
+    libelle: nom
+    geo_point_2d: coordonnees
+prefixIdExterne: MEL_T
+lignes: False
+lignesType: Tramway
+default_value:
+    exploitant: MEL
+    dossierId: HautsFrance
+ignore_values:
+substitue:
+    idExterne:
+        MEL_T10: SNCF02563
+        MEL_T11: SNCF02423
+typeFile: csv

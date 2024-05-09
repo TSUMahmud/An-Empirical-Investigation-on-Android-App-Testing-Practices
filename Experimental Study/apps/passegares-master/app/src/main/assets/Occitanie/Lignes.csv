@@ -1,0 +1,10 @@
+idExterne;nom;type;ordre;couleur;vCreation;vMaj;vSuppression
+SNCF_Occitanie_U;TER Occitanie;Train;2916000;#333333;106;130;0
+Ligne_TAM1;T1 de Montpellier;Tramway;2513010;#0058A2;129;130;0
+Ligne_TAM2;T2 de Montpellier;Tramway;2513020;#F28C00;129;130;0
+Ligne_TAM3;T3 de Montpellier;Tramway;2513030;#CAD400;129;130;0
+Ligne_TAM4;T4 de Montpellier;Tramway;2513040;#4B2A0E;129;130;0
+Ligne_TISSEO11821949021891694;Métro A de Toulouse;Metro;2316100;#E51B24;129;131;0
+Ligne_TISSEO11821949021892004;Métro B de Toulouse;Metro;2316200;#F7E31C;129;131;0
+Ligne_TISSEO11821949021892003;T1 de Toulouse;Tramway;2323010;#224C8F;129;131;0
+Ligne_TISSEO11821953316814856;T2 de Toulouse;Tramway;2323020;#5693D9;129;131;0

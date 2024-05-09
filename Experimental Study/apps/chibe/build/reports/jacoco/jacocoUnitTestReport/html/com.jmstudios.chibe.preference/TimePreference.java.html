@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TimePreference.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe.preference</a> &gt; <span class="el_source">TimePreference.java</span></div><h1>TimePreference.java</h1><pre class="source lang-java linenums">// TimePreference.java --- A Preference that allows the user to choose
+// a time.
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+package com.jmstudios.chibe.preference;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.preference.DialogPreference;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.TimePicker;
+import android.support.annotation.NonNull;
+import android.text.format.DateFormat;
+import android.annotation.SuppressLint;
+
+import com.jmstudios.chibe.R;
+
+public class TimePreference extends DialogPreference {
+    public static final String DEFAULT_VALUE = &quot;00:00&quot;;
+
+    private static final String TAG = &quot;TimePickerPref&quot;;
+    private static final boolean DEBUG = false;
+
+    private TimePicker mTimePicker;
+    protected String mTime;
+
+    public TimePreference(Context context, AttributeSet attrs) {
+<span class="nc" id="L44">        super(context, attrs);</span>
+
+<span class="nc" id="L46">        setPositiveButtonText(getContext().getResources().getString</span>
+<span class="nc" id="L47">                              (R.string.set_dialog));</span>
+<span class="nc" id="L48">        setNegativeButtonText(getContext().getResources().getString</span>
+<span class="nc" id="L49">                              (R.string.cancel_dialog));</span>
+<span class="nc" id="L50">    }</span>
+
+    @Override
+    protected Object onGetDefaultValue(TypedArray a, int index) {
+<span class="nc" id="L54">        return a.getString(index);</span>
+    }
+
+    @Override
+    protected void onSetInitialValue(boolean restorePersistedValue,
+                                     Object defaultValue) {
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (restorePersistedValue) {</span>
+<span class="nc" id="L61">            mTime = getPersistedString(DEFAULT_VALUE);</span>
+        } else {
+<span class="nc" id="L63">            mTime = (String) defaultValue;</span>
+<span class="nc" id="L64">            persistString(mTime);</span>
+        }
+<span class="nc" id="L66">        setSummary(mTime);</span>
+<span class="nc" id="L67">    }</span>
+
+    @Override
+    protected void onBindView(@NonNull View view) {
+<span class="nc" id="L71">        super.onBindView(view);</span>
+<span class="nc" id="L72">    }</span>
+
+    @Override
+    protected View onCreateDialogView() {
+<span class="nc" id="L76">        mTimePicker = new TimePicker(getContext());</span>
+<span class="nc" id="L77">        mTimePicker.setIs24HourView(DateFormat.is24HourFormat(getContext()));</span>
+<span class="nc" id="L78">        return mTimePicker;</span>
+    }
+
+    // This method checks what android version is used and uses
+    // methods accordingly.
+    @SuppressLint(&quot;NewApi&quot;)
+    @Override
+    protected void onBindDialogView(View v) {
+<span class="nc" id="L86">        super.onBindDialogView(v);</span>
+
+<span class="nc" id="L88">        int hour = Integer.parseInt(mTime.split(&quot;:&quot;)[0]);</span>
+<span class="nc" id="L89">        int minute = Integer.parseInt(mTime.split(&quot;:&quot;)[1]);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (android.os.Build.VERSION.SDK_INT &gt;= 23) {</span>
+<span class="nc" id="L91">            mTimePicker.setHour(hour);</span>
+<span class="nc" id="L92">            mTimePicker.setMinute(minute);</span>
+        } else {
+<span class="nc" id="L94">            mTimePicker.setCurrentHour(hour);</span>
+<span class="nc" id="L95">            mTimePicker.setCurrentMinute(minute);</span>
+        }
+<span class="nc" id="L97">    }</span>
+
+    // This method checks what android version is used and uses
+    // methods accordingly.
+    @SuppressLint(&quot;NewApi&quot;)
+    @Override
+    protected void onDialogClosed(boolean positiveResult) {
+<span class="nc" id="L104">        super.onDialogClosed(positiveResult);</span>
+
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (positiveResult) {</span>
+<span class="nc" id="L107">            int hour = 0, minute = 0;</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (android.os.Build.VERSION.SDK_INT &gt;= 23) {</span>
+<span class="nc" id="L109">                hour = mTimePicker.getHour();</span>
+<span class="nc" id="L110">                minute = mTimePicker.getMinute();</span>
+            } else {
+<span class="nc" id="L112">                hour = mTimePicker.getCurrentHour();</span>
+<span class="nc" id="L113">                minute = mTimePicker.getCurrentMinute();</span>
+            }
+
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            mTime = (hour &lt; 10 ? &quot;0&quot; : &quot;&quot;) + Integer.toString(hour) + &quot;:&quot; +</span>
+<span class="nc" id="L117">                (minute &lt; 10 ? &quot;0&quot; : &quot;&quot;) + Integer.toString(minute);</span>
+<span class="nc" id="L118">            persistString(mTime);</span>
+        }
+<span class="nc" id="L120">        setSummary(mTime);</span>
+<span class="nc" id="L121">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

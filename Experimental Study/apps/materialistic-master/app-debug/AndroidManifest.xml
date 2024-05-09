@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="28" android:compileSdkVersionCodename="9" package="io.github.hidroh.materialistic" platformBuildVersionCode="28" platformBuildVersionName="9">
+    <uses-permission android:maxSdkVersion="22" android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:maxSdkVersion="22" android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <permission android:name="io.github.hidroh.materialistic.permission.SYNC_ITEM" android:protectionLevel="signature"/>
+    <permission android:name="io.github.hidroh.materialistic.permission.AUTHENTICATE_ACCOUNTS" android:protectionLevel="signature"/>
+    <uses-permission android:name="io.github.hidroh.materialistic.permission.SYNC_ITEM"/>
+    <uses-permission android:name="io.github.hidroh.materialistic.permission.AUTHENTICATE_ACCOUNTS"/>
+    <application android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:fullBackupContent="@xml/backup" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:name="io.github.hidroh.materialistic.Application" android:networkSecurityConfig="@xml/network_security_config" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="false" android:theme="@style/AppTheme">
+        <activity android:name="io.github.hidroh.materialistic.LauncherActivity" android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
+        </activity>
+        <activity android:label="@string/title_activity_list" android:name="io.github.hidroh.materialistic.ListActivity"/>
+        <activity android:label="@string/title_activity_item" android:name="io.github.hidroh.materialistic.ItemActivity">
+            <intent-filter android:label="@string/filter_title_item">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="news.ycombinator.com" android:pathPrefix="/item" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter android:label="@string/filter_title_item">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="news.ycombinator.com" android:pathPrefix="/item" android:scheme="http"/>
+            </intent-filter>
+            <intent-filter android:label="@string/filter_title_item">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="item" android:pathPrefix="/" android:scheme="io.github.hidroh.materialistic"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_activity_favorite" android:launchMode="singleTop" android:name="io.github.hidroh.materialistic.FavoriteActivity">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable_favorite"/>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_activity_new" android:name="io.github.hidroh.materialistic.NewActivity"/>
+        <activity android:label="@string/title_activity_show" android:name="io.github.hidroh.materialistic.ShowActivity"/>
+        <activity android:label="@string/title_activity_ask" android:name="io.github.hidroh.materialistic.AskActivity"/>
+        <activity android:label="@string/title_activity_jobs" android:name="io.github.hidroh.materialistic.JobsActivity"/>
+        <activity android:label="@string/title_activity_best" android:name="io.github.hidroh.materialistic.BestActivity"/>
+        <activity android:label="@string/title_activity_popular" android:name="io.github.hidroh.materialistic.PopularActivity"/>
+        <activity android:label="@string/title_activity_search" android:name="io.github.hidroh.materialistic.SearchActivity">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable_stories"/>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_activity_about" android:name="io.github.hidroh.materialistic.AboutActivity"/>
+        <activity android:label="@string/action_settings" android:name="io.github.hidroh.materialistic.SettingsActivity" android:permission="android.permission.WRITE_SECURE_SETTINGS">
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/action_settings" android:name="io.github.hidroh.materialistic.PreferencesActivity"/>
+        <activity android:name="io.github.hidroh.materialistic.OfflineWebActivity"/>
+        <activity android:label="@string/title_activity_release" android:name="io.github.hidroh.materialistic.ReleaseNotesActivity" android:theme="@style/AppAlertDialog"/>
+        <activity android:label="@string/title_activity_login" android:name="io.github.hidroh.materialistic.LoginActivity" android:theme="@style/AppAlertDialog"/>
+        <activity android:name="io.github.hidroh.materialistic.FeedbackActivity" android:theme="@style/AppAlertDialog"/>
+        <activity android:label="@string/title_activity_submit" android:name="io.github.hidroh.materialistic.SubmitActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_activity_compose" android:name="io.github.hidroh.materialistic.ComposeActivity"/>
+        <activity android:label="@string/title_activity_user" android:name="io.github.hidroh.materialistic.UserActivity" android:theme="@style/AppTheme.Translucent">
+            <intent-filter android:label="@string/filter_title_item">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="news.ycombinator.com" android:pathPrefix="/user" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter android:label="@string/filter_title_item">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="news.ycombinator.com" android:pathPrefix="/user" android:scheme="http"/>
+            </intent-filter>
+            <intent-filter android:label="@string/title_activity_user">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="user" android:pathPrefix="/" android:scheme="io.github.hidroh.materialistic"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_activity_thread_preview" android:name="io.github.hidroh.materialistic.ThreadPreviewActivity" android:theme="@style/AppAlertDialog"/>
+        <activity android:name="io.github.hidroh.materialistic.appwidget.WidgetConfigActivity" android:theme="@style/AppAlertDialog">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+        <service android:name="io.github.hidroh.materialistic.accounts.AuthenticatorService" android:permission="io.github.hidroh.materialistic.permission.AUTHENTICATE_ACCOUNTS">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator"/>
+        </service>
+        <service android:name="io.github.hidroh.materialistic.data.ItemSyncService" android:permission="io.github.hidroh.materialistic.permission.SYNC_ITEM" android:process=":sync">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/syncadapter"/>
+        </service>
+        <service android:exported="true" android:name="io.github.hidroh.materialistic.data.ItemSyncJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="true" android:name="io.github.hidroh.materialistic.appwidget.WidgetRefreshJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="io.github.hidroh.materialistic.appwidget.WidgetService" android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <service android:exported="false" android:name="io.github.hidroh.materialistic.data.WebCacheService"/>
+        <provider android:authorities="io.github.hidroh.materialistic.syncprovider" android:exported="false" android:name="io.github.hidroh.materialistic.data.SyncContentProvider"/>
+        <provider android:authorities="io.github.hidroh.materialistic.recentprovider" android:exported="false" android:name="io.github.hidroh.materialistic.data.SearchRecentSuggestionsProvider"/>
+        <provider android:authorities="io.github.hidroh.materialistic.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+        <receiver android:name="io.github.hidroh.materialistic.data.ItemSyncWifiReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="io.github.hidroh.materialistic.appwidget.WidgetProvider">
+            <intent-filter>
+                <action android:name="io.github.hidroh.materialistic.ACTION_REFRESH_WIDGET"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/appwidget_info"/>
+        </receiver>
+        <provider android:authorities="io.github.hidroh.materialistic.lifecycle-process" android:exported="false" android:multiprocess="true" android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"/>
+    </application>
+</manifest>

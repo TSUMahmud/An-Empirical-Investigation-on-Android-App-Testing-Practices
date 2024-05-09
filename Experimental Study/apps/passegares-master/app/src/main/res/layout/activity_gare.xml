@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_gare"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fr.nocle.passegares.GareActivity"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/nomGare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_blue_dark"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:text="@string/nomGare"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nomGare">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp">
+
+            <ImageView
+                android:id="@+id/distanceIcone"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:contentDescription="@string/correspondances"
+                app:srcCompat="@drawable/fa_map_marker" />
+
+            <TextView
+                android:id="@+id/distanceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="0"
+                android:gravity="fill"
+                android:text="@string/distance"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="1"
+                android:text="@string/naDistance" />
+
+            <ImageView
+                android:id="@+id/distanceBouton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:contentDescription=" @string/ouvrirCarte"
+                app:srcCompat="@drawable/fa_map" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:id="@+id/zoneCorrespondance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_horizontal"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:scrollbars="none">
+
+            <ImageView
+                android:id="@+id/correspondancesIcone"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:contentDescription="@string/correspondances"
+                app:srcCompat="@drawable/ic_correspondances" />
+
+            <TextView
+                android:id="@+id/correspondancesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="0"
+                android:gravity="fill"
+                android:text="@string/correspondances"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/correspondances"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="1"
+                android:gravity="fill_horizontal"
+                android:scrollHorizontally="false"
+                android:text="@string/correspondances" />
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/pg_logo"
+                android:id="@+id/validationsIcone"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:layout_gravity="fill"
+                android:contentDescription="@string/correspondances" />
+
+            <TextView
+                android:text="@string/validations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/validationsLabel"
+                android:textSize="16sp"
+                android:gravity="fill"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_gravity="fill_horizontal"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:text="@string/validations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:id="@+id/nombreValidations"
+                android:gravity="fill_horizontal" />
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:id="@+id/derniereValidationGrille">
+
+            <ImageView
+                app:srcCompat="@drawable/fa_clock"
+                android:id="@+id/derniereValidationIcone"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:contentDescription="@string/derniereValidationLabel"
+                android:layout_height="wrap_content"
+                android:layout_width="32dp" />
+
+            <TextView
+                android:text="@string/derniereValidationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/derniereValidationLabel"
+                android:textSize="16sp"
+                android:gravity="fill"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_gravity="fill_horizontal"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:text="@string/derniereValidationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:id="@+id/derniereValidationDate"
+                android:gravity="fill_horizontal" />
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/fa_gare"
+                android:id="@+id/niveauIcone"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:contentDescription="@string/correspondances" />
+
+            <TextView
+                android:text="@string/niveau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/niveauLabel"
+                android:textSize="16sp"
+                android:gravity="fill"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_gravity="fill_horizontal"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:text="@string/niveauNull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/niveau"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/zoneTicket">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/fa_ticket"
+                android:id="@+id/ticketFournitIcone"
+                android:contentDescription="@string/labelTicket"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:text="@string/fournitLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ticketFournit"
+                android:textSize="16sp"
+                android:gravity="fill"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_gravity="fill_horizontal"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:text="@string/demandeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ticketDemande"
+                android:textSize="16sp"
+                android:gravity="fill|end"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:layout_gravity="fill_horizontal"
+                android:textColor="@android:color/black"
+                android:textAlignment="viewEnd" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/fa_ticket"
+                android:id="@+id/ticketDemandeIcone"
+                android:contentDescription="@string/labelTicket"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp" />
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:id="@+id/zoneBoutique">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/fa_shopping_cart"
+                android:id="@+id/boutiqueIcone"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:contentDescription="@string/correspondances" />
+
+            <TextView
+                android:text="@string/boutiqueLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/boutiqueLabel"
+                android:textSize="16sp"
+                android:gravity="fill"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_gravity="fill_horizontal"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:text="@string/boutiqueNull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/boutique"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_gravity="fill_horizontal" />
+
+        </GridLayout>
+    </LinearLayout>
+
+</RelativeLayout>

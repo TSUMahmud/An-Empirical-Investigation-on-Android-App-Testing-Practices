@@ -1,0 +1,23 @@
+link_download: https://opendata.lillemetropole.fr/explore/dataset/stations-metro/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true
+header:
+    objectid: idExterne
+    Nom station: nom
+    geometry: coordonnees
+    ligne: ligne
+prefixIdExterne: MEL_M
+lignes: True
+lignesType: Métro
+default_value:
+    exploitant: MEL
+    dossierId: HautsFrance
+ignore_values:
+substitue:
+    idExterne:
+        MEL_M8: SNCF02423
+        MEL_M144: SNCF02423
+        MEL_M117: SNCF02563
+        MEL_M124: MEL_T60
+        MEL_M130: MEL_T64
+        MEL_M137: MEL_T50
+        MEL_M143: MEL_M3
+typeFile: csv

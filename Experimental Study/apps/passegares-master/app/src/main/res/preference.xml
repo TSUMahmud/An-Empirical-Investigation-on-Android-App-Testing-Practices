@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Préférences">
+        <EditTextPreference
+            android:key="Intervalle_Actualisation"
+            android:dialogTitle="Intervalle d'actualisation"
+            android:title="Intervalle d'actualisation du GPS, en secondes"
+            android:summary="Résumé"
+            android:defaultValue="15" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

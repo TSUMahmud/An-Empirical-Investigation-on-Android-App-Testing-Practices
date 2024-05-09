@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 Marien Raat <marienraat@riseup.net> -->
+
+<!-- Author: Marien Raat <marienraat@riseup.net> -->
+
+<!-- This program is free software; you can redistribute it and/or -->
+<!-- modify it under the terms of the GNU General Public License -->
+<!-- as published by the Free Software Foundation; either version 3 -->
+<!-- of the License, or (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <http://www.gnu.org/licenses/>. -->
+<resources>
+  <!-- Themes -->
+  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar" >
+    <item name="colorPrimary">@color/color_primary</item>
+    <item name="colorAccent">@color/color_accent</item>
+    <item name="colorPrimaryDark">@color/color_primary_dark</item>
+  </style>
+
+  <style name="AppThemeDark" parent="Theme.AppCompat">
+    <item name="colorPrimary">@color/color_primary</item>
+    <item name="colorAccent">@color/color_accent</item>
+    <item name="colorPrimaryDark">@color/color_primary_dark</item>
+  </style>
+
+  <style name="AppThemeNoActionBar"
+         parent="Theme.AppCompat.Light.NoActionBar"
+         xmlns:tools="http://schemas.android.com/tools" >
+    <!-- Translucent status bar is only available in API 19+ -->
+    <item
+        tools:targetApi="19"
+        name="android:windowTranslucentStatus">true</item>
+  </style>
+
+    <!-- Preference TextView Style -->
+    <style name="PreferenceTextStyle">
+      <item name="android:textAppearance">@android:style/TextAppearance.Holo.Medium</item>
+      <item name="android:singleLine">true</item>
+      <item name="android:ellipsize">marquee</item>
+    </style>
+
+    <style name="PreferenceSecundaryTextStyle">
+      <item name="android:textAppearance">@android:style/TextAppearance.Holo.Small</item>
+      <item name="android:singleLine">true</item>
+      <item name="android:ellipsize">marquee</item>
+    </style>
+
+</resources>

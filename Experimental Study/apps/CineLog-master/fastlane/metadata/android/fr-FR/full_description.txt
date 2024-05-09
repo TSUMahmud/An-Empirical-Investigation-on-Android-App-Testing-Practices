@@ -1,0 +1,33 @@
+Rédigez vos avis et notez les films et séries que vous avez vus. Créez votre base de données d'avis de films !
+
+Fonctionnalités:
+
+<ul>
+    <li>Recherchez les films et les séries que vous voulez via l'API [https://www.themoviedb.org/ tmdb.org];</li>
+    <li>Choisissez la langue dans laquelle vous voulez afficher les informations de tmdb;</li>
+    <li>Créez un avis dans votre base de données à partir du film trouvé;</li>
+    <li>Créez un avis sur un film inexistant dans la base tmdb;</li>
+    <li>Choisissez votre échelle de notation;</li>
+    <li>Enregistrez les films que vous voulez voir;</li>
+    <li>Exportez la base de données au format CSV;</li>
+    <li>Importez une base de données existante au format CSV.</li>
+    <li>Activez la sauvegarde locale automatique au format CSV (peut permettre une synchronisation avec un client cloud).</li>
+</ul>
+
+Permissions:
+
+<ul>
+    <li>INTERNET pour accéder à l'API tmdb</li>
+    <li>ACCESS_NETWORK_STATE afin de savoir si vous êtes connectés à Internet ou non</li>
+    <li>READ_EXTERNAL_STORAGE pour lire un fichier CSV à importer</li>
+    <li>WRITE_EXTERNAL_STORAGE pour exporter votre base de données au format CSV sur votre appareil</li>
+</ul>
+
+Remerciements:
+
+Merci à Christopher Bodtke pour la traduction allemande de l'application.
+Merci à Diego Sangunietti pour la traduction espagnole de l'application.
+Merci à verahawk pour la traduction polonaise de l'application.
+
+Merci à Kertin Maur pour l'icône de l'application et la proposition de couleurs.
+

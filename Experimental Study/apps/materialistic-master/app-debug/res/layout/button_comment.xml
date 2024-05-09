@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView android:gravity="start|center" android:background="?selectableItemBackground" android:paddingLeft="@dimen/padding_text" android:paddingRight="@dimen/padding_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="72.0dip" android:drawablePadding="@dimen/padding_text" app:textAllCaps="false" style="@style/Widget.AppCompat.Button.Borderless.Colored"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" />

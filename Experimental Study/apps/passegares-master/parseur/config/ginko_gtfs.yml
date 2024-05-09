@@ -1,0 +1,11 @@
+link_download: https://api.ginko.voyage/gtfs-ginko.zip
+prefixIdExterne: GINKO
+default_value:
+    exploitant: GINKO
+    dossierId: BourgogneFC
+lignes: True
+ignore_values:
+substitue:
+    idExterne:
+        GINKOst_gare_viotte: SNCF00630
+typeFile: gtfs

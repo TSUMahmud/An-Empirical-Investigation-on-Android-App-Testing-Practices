@@ -1,0 +1,15 @@
+{
+  "name": "editeur-passegares",
+  "version": "1.0.0",
+  "description": "Éditeur pour PasseGares, afin de créer les csv de données",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JonathanMM",
+  "license": "MIT",
+  "dependencies": {
+    "fast-csv": "^2.3.0"
+  }
+}

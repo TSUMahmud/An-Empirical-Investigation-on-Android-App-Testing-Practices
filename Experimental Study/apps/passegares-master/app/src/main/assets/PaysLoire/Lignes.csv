@@ -1,0 +1,9 @@
+idExterne;nom;type;ordre;couleur;vCreation;vMaj;vSuppression
+SNCF_PaysLoire_U;Aléop en TER;Train;5916000;#333333;106;137;0
+Ligne_TAN1-0;Tramway 1 de Nantes;Tramway;5613010;#009036;129;130;0
+Ligne_TAN2-0;Tramway 2 de Nantes;Tramway;5613020;#E2001A;129;130;0
+Ligne_TAN3-0;Tramway 3 de Nantes;Tramway;5613030;#0077BB;129;130;0
+Ligne_SETRAMT1-148;T1 du Mans;Tramway;5413010;#E31B22;129;130;0
+Ligne_SETRAMT2-148;T2 du Mans;Tramway;5413020;#3B4896;129;130;0
+Ligne_IRIGOA;Tram A d'Angers;Tramway;5116100;#E2001A;129;130;0
+Transvap_CFTS;Chemin de fer touristique de la Sarthe;Train;5919000;#C8B1A3;138;0;0

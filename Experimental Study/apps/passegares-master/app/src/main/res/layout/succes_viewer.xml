@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginStart="16dp"
+    android:paddingBottom="16dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/nomSucces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_gravity="fill"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_row="0"
+        android:gravity="center_vertical"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/etatSucces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="2"
+        android:layout_gravity="bottom|fill"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_row="0"
+        android:gravity="center_vertical|end"
+        android:text="TextView"
+        android:textAlignment="viewEnd"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_row="1"
+        android:indeterminate="false"
+        android:paddingTop="8dp" />
+
+</GridLayout>

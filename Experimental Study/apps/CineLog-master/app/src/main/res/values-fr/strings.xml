@@ -1,0 +1,127 @@
+<!--
+ CineLog Copyright 2018 Pierre Rognon
+ kinolog Copyright (C) 2017  ryan rigby
+
+ This file is part of CineLog.
+ CineLog is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ CineLog is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with CineLog. If not, see <https://www.gnu.org/licenses/>.
+-->
+<resources>
+    <string name="app_name">CinéLog</string>
+    <string name="movie_title_input">Entrer un titre de film</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="title_activity_add_kino">Ajout d\'un film</string>
+    <string name="title_activity_view_kino">Revue du film</string>
+
+    <string name="title_fragment_movie">Films</string>
+    <string name="title_fragment_serie">Séries</string>
+
+    <string name="kino_title">Titre</string>
+
+    <string name="save">Enregistrer</string>
+    <string name="cancel">Annuler</string>
+    <string name="yes">Oui</string>
+
+    <string name="delete_kino_dialog">Supprimer cet avis ?</string>
+
+    <string name="title_activity_add_review">Édition de l\'avis</string>
+    <string name="title_activity_add_review_creation">Ajout d\'un avis</string>
+    <string name="review_hint">Entrer un avis ici.</string>
+
+    <string name="order">Ordre</string>
+    <string name="year">Année de sortie</string>
+    <string name="date_added">Date de visionnage</string>
+    <string name="rating">Note</string>
+    <string name="order_by_title">Titre</string>
+
+    <string name="newest_first">Le plus récent d\'abord</string>
+    <string name="oldest_first">Le plus ancien d\'abord</string>
+    <string name="highest_first">Du meilleur au moins bon</string>
+    <string name="lowest_first">Du moins bon au meilleur</string>
+    <string name="order_by_title_asc">De A à Z</string>
+    <string name="order_by_title_desc">De Z à A</string>
+
+    <string name="title_activity_export_db">Exporter les données</string>
+    <string name="export_db">Exporter les données en CSV</string>
+    <string name="export_db_label">Cliquer sur le bouton d\'export pour récupérer vos données au format CSV. L\'export pourra être réimporté plus tard dans l\'application.</string>
+    <string name="action_export">Exporter</string>
+    <string name="export_start_toast">Export démarré…</string>
+    <string name="export_succeeded_toast">… export terminé. Vérifiez les fichiers export_movies.csv et export_series.csv générés à la racine du stockage.</string>
+    <string name="export_io_error_toast">Une erreur d\'entrée/sortie a eu lieu. Vérifiez les permissions accordées à l\'application.</string>
+    <string name="export_permission_error_toast">Impossible d\'exporter sans autoriser la permission de stockage à CinéLog.</string>
+
+    <string name="action_import">Importer</string>
+    <string name="title_activity_import_db">Import d\'un fichier CSV</string>
+    <string name="import_db">Importer des films</string>
+    <string name="import_db_label">Pour importer des revues de films et de séries, nommez les fichiers import_movies.csv et import_series.csv et placez les à la racine du stockage de votre appareil.</string>
+    <string name="import_permission_error_toast">Impossible d\'importer sans autoriser la permission de stockage à CinéLog.</string>
+    <string name="import_error_toast">Une erreur est survenue durant l\'import des données du fichier %s.</string>
+    <string name="import_io_error_toast">Impossible d\'ouvrir le fichier %s. Vérifiez qu\'il se trouve à la racine du stockage et que vous avez la permission requise.</string>
+    <string name="import_parsing_error_toast">Impossible de parser le fichier CSV. Vérifiez que votre fichier est correctement écrit.</string>
+    <string name="import_parsing_line_error_toast">Impossible d\'importer le film %s. Une date ou un chiffre n\'est pas au bon format.</string>
+    <string name="import_starting_toast">Import démarré…</string>
+    <string name="import_ending_toast">… import terminé !</string>
+
+    <string name="add_from_scratch_label">Film non trouvé ?</string>
+
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="default_tmdb_language_title">Langue des données du film (TmDb)</string>
+    <string name="default_maximum_rating">Note maximale pour un avis</string>
+    <string name="default_maximum_rating_summary">Choisir la note maximale possible pour les prochains avis</string>
+    <string name="default_maximum_rating_dialog">Choisir la note maximale possible pour les prochains avis</string>
+    <string name="general_preferences">Préférences générales</string>
+    <string name="general_preferences_summary">Gérer les préférences générales de l\'application</string>
+    <string name="theme">Thème sombre</string>
+    <string name="change_theme">Thème modifié. Redémarrez l\'application pour que les changements soient totalement appliqués.</string>
+
+    <string name="view_poster_review_layout_title">Avis</string>
+    <string name="view_kino_review_rating_label_value">Note</string>
+    <string name="view_kino_review_review_date_label_value">Date du visionnage</string>
+    <string name="view_kino_review_review_label_value">Commentaire</string>
+    <string name="view_kino_overview_see_more">Voir plus</string>
+    <string name="view_kino_overview_see_less">Retour</string>
+
+    <string name="title_activity_view_unregistered_kino">Informations sur le film</string>
+    <string name="review_date_hint">Entrez la date du visionnage.</string>
+    <string name="review_change_reviewdate">Modifier</string>
+    <string name="addkino_error_no_network">Impossible de se connecter aux Internets :-(</string>
+
+    <string name="title_activity_add_serie">Ajouter une revue de série</string>
+    <string name="add_serie_from_scratch_label">Série non trouvée ?</string>
+    <string name="serie_title_hint">Entrer un titre de série.</string>
+    <string name="title_activity_view_unregistered_serie">Informations sur la série</string>
+    <string name="title_activity_view_serie">Revue de la série</string>
+
+    <string name="automatic_save">Sauvegarde automatique sur le téléphone</string>
+    <string name="automatic_save_summary">Une sauvegarde CSV sera effectuée au premier démarrage de l\'application dans la journée (les 10 derniers exports sont conservés).</string>
+    <string name="automatic_export_cant_get_next_export">Impossible de déterminer le prochain export à effectuer. La sauvegarde automatique ne sera pas effectuée. Vérifiez les permissions associées à l\'application.</string>
+    <string name="automatic_export_cant_export">Impossible d\'effectuer la sauvegarde automatique. Vérifiez les permissions associées à l\'application.</string>
+    <string name="automatic_export_cant_export_movie">Impossible d\'effectuer la sauvegarde automatique des revues de films.</string>
+    <string name="automatic_export_cant_export_serie">Impossible d\'effectuer la sauvegarde automatique des revues de séries.</string>
+    <string name="automatic_export_movie_toast">Sauvegarde automatique des revues de films effectuée !</string>
+    <string name="automatic_export_serie_toast">Sauvegarde automatique des revues de séries effectuée !</string>
+
+    <string name="nav_reviews_space">Avis</string>
+    <string name="nav_wishlist_space">Liste de souhaits</string>
+    <string name="nav_title">Menu</string>
+    <string name="toolbar_title_reviews">Avis</string>
+    <string name="toolbar_title_wishlist">Liste de souhaits</string>
+    <string name="wishlist_list_activity">Liste de souhaits</string>
+    <string name="wishlist_item_added">Un(e) de plus à voir !</string>
+
+    <string name="restart_app_please">Redémarrez l\'application pour terminer la mise à jour.</string>
+    <string name="title_fragment_wishlist_movie">Films à voir</string>
+    <string name="title_fragment_wishlist_serie">Séries à voir</string>
+
+    <string name="unknown_year">Année inconnue</string>
+</resources>

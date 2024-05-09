@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/empty_search" />
+    <include layout="@layout/empty_list" />
+    <io.github.hidroh.materialistic.widget.AppBarSwipeRefreshLayout android:id="@id/swipe_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <androidx.recyclerview.widget.RecyclerView android:id="@id/recycler_view" android:paddingBottom="?actionBarSize" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </io.github.hidroh.materialistic.widget.AppBarSwipeRefreshLayout>
+</FrameLayout>

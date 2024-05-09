@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChibeFragment.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe</a> &gt; <span class="el_source">ChibeFragment.java</span></div><h1>ChibeFragment.java</h1><pre class="source lang-java linenums">// ChibeFragment.java --- PreferenceFragment for ChibeActivity
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package com.jmstudios.chibe;
+
+import android.os.Bundle;
+import android.preference.PreferenceFragment;
+import android.preference.Preference;
+import android.preference.SwitchPreference;
+import android.preference.PreferenceCategory;
+import android.util.Log;
+
+import com.jmstudios.chibe.timing.VibrationAlarmReceiver;
+
+public class ChibeFragment extends PreferenceFragment {
+    private static final String TAG = &quot;ChibeFragment&quot;;
+    private static final boolean DEBUG = true;
+
+    // Required for recreation
+<span class="nc" id="L36">    public ChibeFragment() { }</span>
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+<span class="nc" id="L40">        super.onCreate(savedInstanceState);</span>
+<span class="nc" id="L41">        addPreferencesFromResource(R.xml.preferences);</span>
+
+<span class="nc" id="L43">        addAPISpecificPreferences();</span>
+
+        // Set the OnClickListener for the 'Test normal vibration' preference
+<span class="nc" id="L46">        Preference normalTestVibration =</span>
+<span class="nc" id="L47">            findPreference(&quot;pref_key_test_normal_vibration&quot;);</span>
+<span class="nc" id="L48">        normalTestVibration.setOnPreferenceClickListener</span>
+<span class="nc" id="L49">            (new Preference.OnPreferenceClickListener() {</span>
+                    @Override
+                    public boolean onPreferenceClick
+                        (Preference pref) {
+<span class="nc" id="L53">                        VibrationAlarmReceiver.vibrate(getActivity(), 1, 0);</span>
+<span class="nc" id="L54">                        return true;</span>
+                    }
+                });
+
+        // Set the OnClickListener for the 'Test hour vibration' preference
+<span class="nc" id="L59">        Preference hourTestVibration = findPreference(&quot;pref_key_test_hour_vibration&quot;);</span>
+<span class="nc" id="L60">        hourTestVibration.setOnPreferenceClickListener</span>
+<span class="nc" id="L61">            (new Preference.OnPreferenceClickListener() {</span>
+                    @Override
+                    public boolean onPreferenceClick
+                        (Preference pref) {
+<span class="nc" id="L65">                        VibrationAlarmReceiver.vibrate(getActivity(), 0, 1);</span>
+<span class="nc" id="L66">                        return true;</span>
+                    }
+                });
+
+<span class="nc" id="L70">        Preference darkTheme = findPreference(&quot;pref_key_dark_theme&quot;);</span>
+        // To change the theme, the activity has to be recreated
+<span class="nc" id="L72">        darkTheme.setOnPreferenceChangeListener</span>
+<span class="nc" id="L73">            (new Preference.OnPreferenceChangeListener() {</span>
+                    @Override
+                    public boolean onPreferenceChange
+                        (Preference pref, Object newValue) {
+<span class="nc" id="L77">                        getActivity().recreate();</span>
+<span class="nc" id="L78">                        return true;</span>
+                    }
+                });
+<span class="nc" id="L81">    }</span>
+
+    private void addAPISpecificPreferences() {
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (android.os.Build.VERSION.SDK_INT &gt;= 23) {</span>
+            // Do not disturb mode was added in API 23
+<span class="nc" id="L86">            addVibrateDuringDndPreference();</span>
+        }
+<span class="nc" id="L88">    }</span>
+
+    private void addVibrateDuringDndPreference() {
+<span class="nc" id="L91">        PreferenceCategory timingCategory =</span>
+<span class="nc" id="L92">            (PreferenceCategory) findPreference(&quot;pref_key_category_timing&quot;);</span>
+<span class="nc" id="L93">        timingCategory.addPreference(getVibrateDuringDndPreference());</span>
+<span class="nc" id="L94">    }</span>
+
+    private SwitchPreference getVibrateDuringDndPreference() {
+<span class="nc" id="L97">        SwitchPreference vibrateDuringDnd = new SwitchPreference(getActivity());</span>
+<span class="nc" id="L98">        vibrateDuringDnd.setKey(&quot;pref_key_vibrate_during_dnd&quot;);</span>
+<span class="nc" id="L99">        vibrateDuringDnd</span>
+<span class="nc" id="L100">            .setTitle(getActivity().getString</span>
+<span class="nc" id="L101">                      (R.string.vibrate_during_dnd_preference_title));</span>
+<span class="nc" id="L102">        vibrateDuringDnd</span>
+<span class="nc" id="L103">            .setSummary(getActivity().getString</span>
+<span class="nc" id="L104">                      (R.string.vibrate_during_dnd_preference_summary));</span>
+<span class="nc" id="L105">        vibrateDuringDnd.setDefaultValue(true);</span>
+<span class="nc" id="L106">        return vibrateDuringDnd;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

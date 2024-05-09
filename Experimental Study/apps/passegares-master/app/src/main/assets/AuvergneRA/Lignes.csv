@@ -1,0 +1,14 @@
+idExterne;nom;type;ordre;couleur;vCreation;vMaj;vSuppression
+SNCF_AuvergneRA_U;TER Auvergne Rhône Alpes;Train;11916000;#333333;106;130;0
+RMRMSHT;Funiculaire de Saint-Hilaire-du-Touvet;Funiculaire;0;#000000;139;0;0
+TDGB;Téléphérique de Grenoble Bastille;Téléphérique;0;#000000;139;0;0
+SEMITAG_A;Ligne A;Tramway;0;#0078BB;139;0;0
+SEMITAG_B;Ligne B;Tramway;0;#009932;139;0;0
+SEMITAG_C;Ligne C;Tramway;0;#E2007A;139;0;0
+SEMITAG_D;Ligne D;Tramway;0;#F49E00;139;0;0
+SEMITAG_E;Ligne E;Tramway;0;#56378A;139;0;0
+SNCCFV;Chemin de fer du Vivarais;Train;0;#000000;143;0;0
+CFTA_PD;Panoramique des Dômes;Train;0;#000000;143;0;0
+PARADISKI_AE;Les Arcs' Express;Funiculaire;0;#000000;143;0;0
+FDC;Funiculaire du Capucin;Funiculaire;0;#000000;143;0;0
+STAT_FTB;Funiculaire de Thonon-les-Bains;Funiculaire;0;#000000;143;0;0

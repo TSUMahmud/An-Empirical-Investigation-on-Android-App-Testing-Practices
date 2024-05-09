@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<EditTextPreference
+    android:key="Intervalle_Actualisation"
+    android:dialogTitle="@string/preferenceIntervalleActualisationTitle"
+    android:defaultValue="15"
+    android:inputType="number"
+    android:title="@string/preferenceIntervalleActualisationTitle"
+    android:summary="@string/preferenceIntervalleActualisationSummary" />
+<SwitchPreference
+    android:defaultValue="true"
+    android:title="@string/activerNotification"
+    android:key="activerNotification" />
+<Preference
+    android:title="@string/preferenceAjoutRegionTitle"
+    android:summary="@string/preferenceAjoutRegionSummary"
+    android:key="ajoutRegion" />
+<SwitchPreference
+    android:defaultValue="true"
+    android:title="@string/preferenceNouvelleInterfaceVisaTitle"
+    android:key="nouvelleInterfaceVisa" />
+<Preference
+    android:title="@string/preferencePreferencesAvanceesTitle"
+    android:key="preferencesAvancees" />
+<Preference
+    android:title="@string/preferenceVersionAPKTitle"
+    android:key="versionAPK" />
+</PreferenceScreen>

@@ -1,0 +1,11 @@
+link_download: https://www.data.gouv.fr/fr/datasets/r/7d4f6091-c4d6-4311-8347-6b956b85422c
+prefixIdExterne: DIVIA
+default_value:
+    exploitant: DIVIA
+    dossierId: BourgogneFC
+lignes: True
+ignore_values:
+substitue:
+    idExterne:
+        DIVIACTP2374: SNCF00676
+typeFile: gtfs

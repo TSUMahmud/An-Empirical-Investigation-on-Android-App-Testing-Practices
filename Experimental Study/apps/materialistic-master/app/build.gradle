@@ -1,0 +1,166 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'jacoco'
+jacoco {
+    toolVersion = "$rootProject.ext.jacocoVersion"
+}
+android {
+    compileSdkVersion 28
+    
+    defaultConfig {
+        applicationId "io.github.hidroh.materialistic"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 79
+        versionName "3.3"
+        buildConfigField "int", "LATEST_RELEASE", "77"
+        buildConfigField "String", "GITHUB_TOKEN", "\"\""
+        buildConfigField "String", "MERCURY_TOKEN", "\"\""
+        proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                'proguard-rules.pro',
+                'proguard-square.pro',
+                'proguard-support.pro',
+                'proguard-rx.pro'
+        resConfigs "en", "zh-rCN", "es"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled !rootProject.ext.ci
+            useProguard false
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            testCoverageEnabled false
+        }
+    }
+
+    lintOptions {
+        htmlReport false
+        xmlReport false
+        textReport true
+        lintConfig file("${rootProject.getRootDir()}/lint.xml")
+        warningsAsErrors true
+        abortOnError true
+        explainIssues false
+        absolutePaths false
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
+    testOptions {
+         unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+ext {
+    supportVersion = '28.0.0'
+    okHttpVersion = '3.9.1'
+    daggerVersion = '1.2.5'
+    leakCanaryVersion = '1.5.4'
+    retrofitVersion = '2.3.0'
+    roomVersion = '1.0.0'
+    archVersion = '1.1.0'
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.0.0',
+            'androidx.recyclerview:recyclerview:1.0.0',
+            'androidx.cardview:cardview:1.0.0',
+            'com.google.android.material:material:1.0.0',
+            'androidx.preference:preference:1.0.0',
+            'androidx.browser:browser:1.0.0',
+            "com.squareup.dagger:dagger:$daggerVersion",
+            "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion",
+            "com.squareup.okhttp3:okhttp:$okHttpVersion",
+            "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+            "io.reactivex:rxandroid:1.2.1",
+            "io.reactivex:rxjava:1.1.7",
+            'androidx.room:room-runtime:2.0.0',
+            'androidx.lifecycle:lifecycle-extensions:2.0.0',
+            'androidx.lifecycle:lifecycle-common-java8:2.0.0',
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android${rootProject.hasProperty("leak") ? "" : "-no-op"}:$leakCanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    kapt 'androidx.room:room-compiler:2.0.0',
+            "com.squareup.dagger:dagger-compiler:$daggerVersion"
+    kaptTest 'androidx.room:room-compiler:2.0.0',
+            "com.squareup.dagger:dagger-compiler:$daggerVersion"
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.5.1'
+    testImplementation 'org.mockito:mockito-core:3.0.0'
+    testImplementation 'org.powermock:powermock-core:2.0.2'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.2'
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.2'
+    testImplementation 'org.hamcrest:hamcrest-all:1.3'
+    testImplementation 'net.lachlanmckee:timber-junit-rule:1.0.1'
+    testImplementation "org.robolectric:robolectric:4.2.1"
+    testImplementation 'androidx.test:core:1.2.0'
+    testImplementation 'androidx.test.ext:junit:1.1.1'
+
+    // May need a resolution strategy for support libs to our versions
+    androidTestImplementation 'com.azimolabs.conditionwatcher:conditionwatcher:0.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+task jacocoUnitTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+
+    reports {
+        xml.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories.from = files([mainSrc])
+    classDirectories.from = files([debugTree])
+    executionData.from = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec'
+    ])
+}
+
+// Our merge report task
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec',
+            'outputs/code-coverage/connected/**/*.ec'
+    ])
+}
+
+apply from: "${rootProject.getRootDir()}/robolectric.gradle"

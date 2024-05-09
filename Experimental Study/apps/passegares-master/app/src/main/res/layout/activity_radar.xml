@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="fr.nocle.passegares.radar.RadarFragment">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nomGare"
+        android:id="@+id/garePlusProcheNom"
+        android:layout_gravity="center_horizontal"
+        android:textSize="22sp"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:animateLayoutChanges="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/fa_ticket"
+            android:id="@+id/boutonFournisseur"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:scaleType="fitEnd"
+            android:contentDescription="@string/labelTicket" />
+
+        <TextView
+            android:text="@string/niveauNull"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/garePlusProcheNiveau"
+            tools:textSize="14sp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:gravity="center_vertical|end" />
+
+        <ImageView
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_plus"
+            android:id="@+id/boutonEvolution"
+            android:layout_weight="1"
+            android:contentDescription="@string/evoluerGare"
+            android:layout_width="wrap_content"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitStart"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/naDistance"
+        android:id="@+id/garePlusProcheDistance"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/abc_text_size_display_3_material"
+        android:textAlignment="center"
+        tools:ignore="PrivateResource" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tamponner"
+        android:id="@+id/boutonTampon"
+        android:layout_gravity="center_horizontal"
+        android:enabled="false" />
+
+    <LinearLayout
+        style="?attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/boutonCreerBoutique"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:contentDescription="@string/creerBoutique"
+            android:text="@string/creerBoutique"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/boutonVoirBoutique"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:contentDescription="@string/voirBoutique"
+            android:text="@string/voirBoutique"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listeGaresProches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

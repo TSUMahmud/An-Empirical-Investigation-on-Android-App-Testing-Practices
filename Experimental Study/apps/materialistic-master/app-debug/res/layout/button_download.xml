@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <io.github.hidroh.materialistic.widget.TintableTextView android:padding="@dimen/activity_vertical_margin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/file_not_supported" android:drawablePadding="@dimen/padding" app:iconTop="@drawable/ic_save_white_48dp" style="@style/textEmptyStyle" />
+    <Button android:id="@id/download_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/download_external" style="@style/Widget.AppCompat.Button.Colored" />
+</LinearLayout>

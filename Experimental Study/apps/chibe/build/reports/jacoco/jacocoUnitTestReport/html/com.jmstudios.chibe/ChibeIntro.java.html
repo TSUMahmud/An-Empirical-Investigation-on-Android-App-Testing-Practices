@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChibeIntro.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chibe</a> &gt; <a href="index.source.html" class="el_package">com.jmstudios.chibe</a> &gt; <span class="el_source">ChibeIntro.java</span></div><h1>ChibeIntro.java</h1><pre class="source lang-java linenums">// ChibeIntro.java --- Intro/help activity using the AppIntro
+// library: https://github.com/PaoloRotolo/AppIntro
+
+// Copyright (C) 2016 Marien Raat &lt;marienraat@riseup.net&gt;
+
+// Author: Marien Raat &lt;marienraat@riseup.net&gt;
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 3
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package com.jmstudios.chibe;
+
+import android.os.Bundle;
+import android.content.res.Resources;
+
+import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntroFragment;
+
+<span class="nc" id="L29">public class ChibeIntro extends AppIntro {</span>
+    private Resources resources;
+
+    @Override
+    public void init(Bundle savedInstanceState) {
+<span class="nc" id="L34">        resources = this.getResources();</span>
+
+<span class="nc" id="L36">        addSlide(AppIntroFragment.newInstance</span>
+<span class="nc" id="L37">                 (resources.getString(R.string.intro_slide_1_title),</span>
+<span class="nc" id="L38">                  resources.getString(R.string.intro_slide_1_text),</span>
+                  R.drawable.intro_slide_1,
+                  0xFF3f51b5));
+<span class="nc" id="L41">        addSlide(AppIntroFragment.newInstance</span>
+<span class="nc" id="L42">                 (resources.getString(R.string.intro_slide_2_title),</span>
+<span class="nc" id="L43">                  resources.getString(R.string.intro_slide_2_text),</span>
+                  R.drawable.intro_slide_2,
+                  0xFFf44336));
+<span class="nc" id="L46">        addSlide(AppIntroFragment.newInstance</span>
+<span class="nc" id="L47">                 (resources.getString(R.string.intro_slide_3_title),</span>
+<span class="nc" id="L48">                  resources.getString(R.string.intro_slide_3_text),</span>
+                  R.drawable.intro_slide_3,
+                  0xFF263238));
+<span class="nc" id="L51">        addSlide(AppIntroFragment.newInstance</span>
+<span class="nc" id="L52">                 (resources.getString(R.string.intro_slide_4_title),</span>
+<span class="nc" id="L53">                  resources.getString(R.string.intro_slide_4_text),</span>
+                  R.drawable.intro_slide_4,
+                  0xFF9c27b0));
+<span class="nc" id="L56">        addSlide(AppIntroFragment.newInstance</span>
+<span class="nc" id="L57">                 (resources.getString(R.string.intro_slide_5_title),</span>
+<span class="nc" id="L58">                  resources.getString(R.string.intro_slide_5_text),</span>
+                  R.drawable.intro_slide_5,
+                  0xFFffb300));
+<span class="nc" id="L61">    }</span>
+
+    @Override
+    public void onSkipPressed() {
+        // Do something when users tap on Skip button.
+<span class="nc" id="L66">        finish();</span>
+<span class="nc" id="L67">    }</span>
+
+    @Override
+    public void onDonePressed() {
+        // Do something when users tap on Done button.
+<span class="nc" id="L72">        finish();</span>
+<span class="nc" id="L73">    }</span>
+
+    public void onSlideChanged() {
+        // Do something when the slide changes.
+<span class="nc" id="L77">    }</span>
+
+    @Override
+    public void onNextPressed() {
+        // Do something when users tap on Next button.
+<span class="nc" id="L82">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

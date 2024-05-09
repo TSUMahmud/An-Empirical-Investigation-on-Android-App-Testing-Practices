@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:id="@id/content_frame" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View android:id="@id/touch_outside" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <androidx.coordinatorlayout.widget.CoordinatorLayout android:orientation="vertical" android:id="@id/bottom_sheet" android:background="?android:colorBackground" android:layout_width="fill_parent" android:layout_height="fill_parent" app:behavior_hideable="true" app:behavior_peekHeight="128.0dip" app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        <com.google.android.material.appbar.AppBarLayout android:id="@id/appbar" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <include android:id="@id/header_card_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="0.0dip" app:layout_scrollFlags="enterAlwaysCollapsed|scroll" layout="@layout/user_header" />
+            <com.google.android.material.tabs.TabLayout android:id="@id/tab_layout" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_scrollFlags="enterAlways|scroll|snap" app:tabBackground="?colorPrimary" app:tabTextColor="?android:textColorPrimary" />
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.recyclerview.widget.RecyclerView android:id="@id/recycler_view" android:scrollbars="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        <include android:layout_width="fill_parent" android:layout_height="fill_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" layout="@layout/empty_item" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
