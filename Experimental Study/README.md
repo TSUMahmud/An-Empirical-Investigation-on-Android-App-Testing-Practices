@@ -8,8 +8,12 @@
 - Gradle 7.3
 
 ## Python Requirements
-- beautifulsoup4>=4.6.3
-- numpy>=1.15.2
+- beautifulsoup4
+- numpy
+- pandas
+- google-play-scraper
+- scipy
+- pyplot 
 
 ## How to run
 - If you do not have the requirements installed in python: run "pip install -r requirements.txt" to install all the requirements
