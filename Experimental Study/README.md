@@ -13,7 +13,7 @@
 - pandas
 - google-play-scraper
 - scipy
-- pyplot 
+- matplotlib 
 
 ## How to run
 - If you do not have the requirements installed in python: run "pip install -r requirements.txt" to install all the requirements
