@@ -4,3 +4,6 @@ matplotlib
 numpy
 glob2
 requests
+pandas
+google-play-scraper
+scipy
